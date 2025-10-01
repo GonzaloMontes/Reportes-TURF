@@ -89,19 +89,25 @@ class ReportService
 
         $summary = $this->db->query($query, 'agencias', $params)->fetch(PDO::FETCH_ASSOC);
 
+        error_log("DEBUG getListaTickets - Summary raw: " . json_encode($summary));
+
         $totalVendido = (float)($summary['total_vendido'] ?? 0);
         $totalGanadores = (float)($summary['total_ganadores'] ?? 0);
         $totalPagados = (float)($summary['total_pagados'] ?? 0);
         $totalDevoluciones = (float)($summary['total_devoluciones'] ?? 0);
         $ganancia = $totalVendido - $totalPagados;
 
-        return [
+        $resultado = [
             'total_vendido' => $totalVendido,
             'total_ganadores' => $totalGanadores,
             'total_pagados' => $totalPagados,
             'total_devoluciones' => $totalDevoluciones,
             'ganancia' => $ganancia
         ];
+        
+        error_log("DEBUG getListaTickets - Resultado final: " . json_encode($resultado));
+        
+        return $resultado;
     }
 
     /**
@@ -286,14 +292,20 @@ class ReportService
             $registro['fecha'] = $this->formatearFecha($registro['fecha']);
         }
 
+        error_log("DEBUG getCaballosRetirados - Totals raw: " . json_encode($totals));
+
         // 5. RETORNO DE DATOS ESTRUCTURADOS CON NUEVOS TOTALES
-        return [
+        $resultado = [
             'data' => $registros,
             'total_records' => (int)$totals['total_records'],
             'total_general' => (float)$totals['total_general'],
             'total_a_devolver' => (float)$totals['total_a_devolver'],
             'total_devuelto' => (float)$totals['total_devuelto']
         ];
+        
+        error_log("DEBUG getCaballosRetirados - Resultado final: " . json_encode($resultado));
+        
+        return $resultado;
     }
 
     /**
