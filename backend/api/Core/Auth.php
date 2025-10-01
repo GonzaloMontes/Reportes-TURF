@@ -56,6 +56,7 @@ class Auth
                 error_log('DEBUG Login - Contraseña enviada: ' . $contrasena);
                 error_log('DEBUG Login - Contraseña MD5: ' . $contrasenaHasheada);
                 error_log('DEBUG Login - Coinciden MD5: ' . ($usuario['contrasena'] === $contrasenaHasheada ? 'SÍ' : 'NO'));
+                error_log('DEBUG Login - id_perfil: ' . $usuario['id_perfil'] . ' (tipo: ' . gettype($usuario['id_perfil']) . ')');
             }
             
             // Verificar si existe el usuario y la contraseña coincide (usando MD5)
@@ -68,7 +69,12 @@ class Auth
             }
             
             // Determinar el rol basado en id_perfil (1=admin, 2=agencia)
-            $rol = ($usuario['id_perfil'] == 1) ? self::ROLE_ADMIN : self::ROLE_AGENCIA;
+            // Usar comparación estricta para evitar problemas de tipos
+            $rol = ($usuario['id_perfil'] === 1 || $usuario['id_perfil'] === '1') 
+                ? self::ROLE_ADMIN 
+                : self::ROLE_AGENCIA;
+            
+            error_log('DEBUG Login - Rol asignado: ' . $rol);
             
             // Crear sesión del usuario autenticado
             $_SESSION['user_id'] = $usuario['id_usuario'];

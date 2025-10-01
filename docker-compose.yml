@@ -7,14 +7,9 @@ services:
     container_name: turf_php
     volumes:
       - ./backend/api:/var/www/html
+      - ./backend/.env:/var/www/html/../.env:ro
     environment:
       APP_ENV: development
-      # Opcional: podés sobreescribir acá si querés probar con otra DB
-      # DB_AGENCIAS_HOST: lot.turfsoft.net
-      # DB_AGENCIAS_PORT: 3306
-      # DB_AGENCIAS_NAME: lotturfsoft_agenciarepo
-      # DB_AGENCIAS_USER: lotturfsoft_agenciarepo
-      # DB_AGENCIAS_PASS: ********
     networks:
       - turf_net
 

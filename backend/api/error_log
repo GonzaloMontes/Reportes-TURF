@@ -58,3 +58,277 @@
 [01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
 [01-Oct-2025 21:48:43 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
 [01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:03:13 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 22:03:13 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 22:03:13 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 22:03:13 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 22:03:13 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 22:03:13 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:03:14 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 22:03:14 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 22:03:14 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 22:03:14 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 22:03:14 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 22:03:14 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 22:03:15 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 22:03:15 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 22:03:15 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 22:03:15 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:03:19 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 22:03:19 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 22:03:19 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 22:03:19 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 22:03:19 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 22:03:19 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:03:20 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 22:03:20 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 22:03:20 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 22:03:20 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 22:03:20 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 22:03:20 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:03:21 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 22:03:21 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 22:03:21 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 22:03:21 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 22:03:21 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 22:03:21 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:03:21 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 22:03:21 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 22:03:21 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 22:03:21 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 22:03:21 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 22:03:21 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:03:25 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 22:03:25 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 22:03:25 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 22:03:25 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 22:03:25 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 22:03:25 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 22:05:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:121
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 121
+[01-Oct-2025 22:05:16 UTC] DEBUG Login - Usuario encontrado: SÍ
+[01-Oct-2025 22:05:16 UTC] DEBUG Login - Login BD: carreras2024
+[01-Oct-2025 22:05:16 UTC] DEBUG Login - Login enviado: carreras2024
+[01-Oct-2025 22:05:16 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[01-Oct-2025 22:05:16 UTC] DEBUG Login - Contraseña enviada: admin123
+[01-Oct-2025 22:05:16 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[01-Oct-2025 22:05:16 UTC] DEBUG Login - Coinciden MD5: SÍ
+[01-Oct-2025 22:05:16 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[01-Oct-2025 22:05:16 UTC] DEBUG Login - Rol asignado: admin
+[01-Oct-2025 22:05:16 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:16 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[01-Oct-2025 22:05:16 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:16 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/Services/ExportService.php:24) in /var/www/html/Controllers/ReportController.php on line 512
+[01-Oct-2025 22:05:18 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:18 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[01-Oct-2025 22:05:18 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:18 UTC] Acceso a reporte: usuario=1, reporte=informe-por-agencia, filtros={"fecha_desde":"2025-09-01","fecha_hasta":"2025-10-01"}
+[01-Oct-2025 22:05:18 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/Services/ExportService.php:24) in /var/www/html/Controllers/ReportController.php on line 512
+[01-Oct-2025 22:05:19 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:19 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[01-Oct-2025 22:05:19 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:19 UTC] Acceso a reporte: usuario=1, reporte=lista_tickets, filtros={"fecha_desde":"2025-09-01","fecha_hasta":"2025-10-01"}
+[01-Oct-2025 22:05:19 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/Services/ExportService.php:24) in /var/www/html/Controllers/ReportController.php on line 512
+[01-Oct-2025 22:05:21 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:21 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[01-Oct-2025 22:05:21 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:21 UTC] Acceso a reporte: usuario=1, reporte=lista_tickets, filtros={"fecha_desde":"2025-09-01","fecha_hasta":"2025-10-01"}
+[01-Oct-2025 22:05:21 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/Services/ExportService.php:24) in /var/www/html/Controllers/ReportController.php on line 512
+[01-Oct-2025 22:05:22 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:22 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[01-Oct-2025 22:05:22 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:22 UTC] DEBUG - Consulta SQL ejecutada: 
+            SELECT 
+                cr.fecha,
+                cr.nro_caballo,
+                COALESCE(SUM(dt.total_apostado), 0) as total_apostado,
+                COALESCE(SUM(CASE WHEN crd.devolucion = 0 THEN dt.total_apostado ELSE 0 END), 0) as monto_a_devolver,
+                COALESCE(SUM(CASE WHEN crd.devolucion = 1 THEN dt.total_apostado ELSE 0 END), 0) as monto_devuelto,
+                CASE 
+                    WHEN SUM(dt.total_apostado) IS NULL OR SUM(dt.total_apostado) = 0 THEN 'Sin Apuestas'
+                    WHEN SUM(CASE WHEN crd.devolucion = 0 THEN 1 ELSE 0 END) > 0 
+                         AND SUM(CASE WHEN crd.devolucion = 1 THEN 1 ELSE 0 END) > 0 
+                    THEN 'Parcial'
+                    WHEN SUM(CASE WHEN crd.devolucion = 1 THEN 1 ELSE 0 END) > 0 
+                    THEN 'Devuelto'
+                    ELSE 'Pendiente'
+                END as estado_devolucion
+            FROM 
+                tbl_caballos_retirados_ultimo_momento cr
+            LEFT JOIN 
+                tbl_caballos_retirados_um_detalle crd ON cr.id_caballo_retirado_ultimo_momento = crd.id_caballo_retirado_ultimo_momento
+            LEFT JOIN 
+                tbl_detalle_tickets dt ON crd.id_detalle_ticket = dt.id_detalle_ticket
+            WHERE 1=1
+            AND cr.fecha >= :fecha_desde AND cr.fecha <= :fecha_hasta
+            GROUP BY
+                cr.fecha, cr.nro_caballo, cr.id_carrera
+            ORDER BY
+                cr.fecha DESC, cr.nro_caballo ASC
+            LIMIT :limit OFFSET :offset
+        
+[01-Oct-2025 22:05:22 UTC] DEBUG - Parámetros: {":fecha_desde":"2025-09-01",":fecha_hasta":"2025-10-01",":limit":100,":offset":0}
+[01-Oct-2025 22:05:22 UTC] DEBUG - Registros obtenidos: 0 de 0 totales
+[01-Oct-2025 22:05:22 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/Services/ExportService.php:24) in /var/www/html/Controllers/ReportController.php on line 512
+[01-Oct-2025 22:05:24 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:24 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[01-Oct-2025 22:05:24 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:24 UTC] Acceso a reporte: usuario=1, reporte=lista_tickets, filtros={"fecha_desde":"2025-09-01","fecha_hasta":"2025-10-01"}
+[01-Oct-2025 22:05:24 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/Services/ExportService.php:24) in /var/www/html/Controllers/ReportController.php on line 512
+[01-Oct-2025 22:05:27 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:27 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[01-Oct-2025 22:05:27 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:27 UTC] Acceso a reporte: usuario=1, reporte=lista_tickets, filtros={"fecha_desde":"2025-05-05","fecha_hasta":"2025-10-01"}
+[01-Oct-2025 22:05:27 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/Services/ExportService.php:24) in /var/www/html/Controllers/ReportController.php on line 512
+[01-Oct-2025 22:05:29 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:29 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[01-Oct-2025 22:05:29 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:29 UTC] DEBUG - Consulta SQL ejecutada: 
+            SELECT 
+                cr.fecha,
+                cr.nro_caballo,
+                COALESCE(SUM(dt.total_apostado), 0) as total_apostado,
+                COALESCE(SUM(CASE WHEN crd.devolucion = 0 THEN dt.total_apostado ELSE 0 END), 0) as monto_a_devolver,
+                COALESCE(SUM(CASE WHEN crd.devolucion = 1 THEN dt.total_apostado ELSE 0 END), 0) as monto_devuelto,
+                CASE 
+                    WHEN SUM(dt.total_apostado) IS NULL OR SUM(dt.total_apostado) = 0 THEN 'Sin Apuestas'
+                    WHEN SUM(CASE WHEN crd.devolucion = 0 THEN 1 ELSE 0 END) > 0 
+                         AND SUM(CASE WHEN crd.devolucion = 1 THEN 1 ELSE 0 END) > 0 
+                    THEN 'Parcial'
+                    WHEN SUM(CASE WHEN crd.devolucion = 1 THEN 1 ELSE 0 END) > 0 
+                    THEN 'Devuelto'
+                    ELSE 'Pendiente'
+                END as estado_devolucion
+            FROM 
+                tbl_caballos_retirados_ultimo_momento cr
+            LEFT JOIN 
+                tbl_caballos_retirados_um_detalle crd ON cr.id_caballo_retirado_ultimo_momento = crd.id_caballo_retirado_ultimo_momento
+            LEFT JOIN 
+                tbl_detalle_tickets dt ON crd.id_detalle_ticket = dt.id_detalle_ticket
+            WHERE 1=1
+            AND cr.fecha >= :fecha_desde AND cr.fecha <= :fecha_hasta
+            GROUP BY
+                cr.fecha, cr.nro_caballo, cr.id_carrera
+            ORDER BY
+                cr.fecha DESC, cr.nro_caballo ASC
+            LIMIT :limit OFFSET :offset
+        
+[01-Oct-2025 22:05:29 UTC] DEBUG - Parámetros: {":fecha_desde":"2025-05-05",":fecha_hasta":"2025-10-01",":limit":100,":offset":0}
+[01-Oct-2025 22:05:29 UTC] DEBUG - Registros obtenidos: 16 de 16 totales
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-15' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-15 -> 15/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-14' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-14 -> 14/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-11' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-11 -> 11/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-10' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-10 -> 10/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-08' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-08 -> 08/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Input: '2025-06-27' (tipo: string)
+[01-Oct-2025 22:05:29 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-06-27 -> 27/06/2025
+[01-Oct-2025 22:05:29 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/Services/ExportService.php:24) in /var/www/html/Controllers/ReportController.php on line 512
+[01-Oct-2025 22:05:32 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:32 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[01-Oct-2025 22:05:32 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[01-Oct-2025 22:05:32 UTC] DEBUG - Consulta SQL ejecutada: 
+            SELECT 
+                cr.fecha,
+                cr.nro_caballo,
+                COALESCE(SUM(dt.total_apostado), 0) as total_apostado,
+                COALESCE(SUM(CASE WHEN crd.devolucion = 0 THEN dt.total_apostado ELSE 0 END), 0) as monto_a_devolver,
+                COALESCE(SUM(CASE WHEN crd.devolucion = 1 THEN dt.total_apostado ELSE 0 END), 0) as monto_devuelto,
+                CASE 
+                    WHEN SUM(dt.total_apostado) IS NULL OR SUM(dt.total_apostado) = 0 THEN 'Sin Apuestas'
+                    WHEN SUM(CASE WHEN crd.devolucion = 0 THEN 1 ELSE 0 END) > 0 
+                         AND SUM(CASE WHEN crd.devolucion = 1 THEN 1 ELSE 0 END) > 0 
+                    THEN 'Parcial'
+                    WHEN SUM(CASE WHEN crd.devolucion = 1 THEN 1 ELSE 0 END) > 0 
+                    THEN 'Devuelto'
+                    ELSE 'Pendiente'
+                END as estado_devolucion
+            FROM 
+                tbl_caballos_retirados_ultimo_momento cr
+            LEFT JOIN 
+                tbl_caballos_retirados_um_detalle crd ON cr.id_caballo_retirado_ultimo_momento = crd.id_caballo_retirado_ultimo_momento
+            LEFT JOIN 
+                tbl_detalle_tickets dt ON crd.id_detalle_ticket = dt.id_detalle_ticket
+            WHERE 1=1
+            AND cr.fecha >= :fecha_desde AND cr.fecha <= :fecha_hasta
+            GROUP BY
+                cr.fecha, cr.nro_caballo, cr.id_carrera
+            ORDER BY
+                cr.fecha DESC, cr.nro_caballo ASC
+            LIMIT :limit OFFSET :offset
+        
+[01-Oct-2025 22:05:32 UTC] DEBUG - Parámetros: {":fecha_desde":"2025-05-01",":fecha_hasta":"2025-10-01",":limit":100,":offset":0}
+[01-Oct-2025 22:05:32 UTC] DEBUG - Registros obtenidos: 16 de 16 totales
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-15' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-15 -> 15/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-14' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-14 -> 14/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-11' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-11 -> 11/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-10' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-10 -> 10/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-08' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-08 -> 08/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Input: '2025-06-27' (tipo: string)
+[01-Oct-2025 22:05:32 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-06-27 -> 27/06/2025
+[01-Oct-2025 22:05:32 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/Services/ExportService.php:24) in /var/www/html/Controllers/ReportController.php on line 512
