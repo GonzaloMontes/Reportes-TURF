@@ -1,0 +1,57 @@
+services:
+  # --- PHP-FPM (backend) ---
+  php:
+    build:
+      context: .                # usamos la raíz como contexto
+      dockerfile: ./backend/api/Dockerfile
+    container_name: turf_php
+    volumes:
+      - ./backend/api:/var/www/html
+    environment:
+      APP_ENV: development
+      # Opcional: podés sobreescribir acá si querés probar con otra DB
+      # DB_AGENCIAS_HOST: lot.turfsoft.net
+      # DB_AGENCIAS_PORT: 3306
+      # DB_AGENCIAS_NAME: lotturfsoft_agenciarepo
+      # DB_AGENCIAS_USER: lotturfsoft_agenciarepo
+      # DB_AGENCIAS_PASS: ********
+    networks:
+      - turf_net
+
+  # --- Nginx (sirve frontend build + API PHP) ---
+  nginx:
+    image: nginx:alpine
+    container_name: turf_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./frontend/dist-vue:/var/www/html/frontend/dist-vue:ro
+      - ./backend/api:/var/www/html/api
+    depends_on:
+      - php
+    networks:
+      - turf_net
+
+  # --- Frontend en desarrollo (Vite) ---
+  frontend-dev:
+    build:
+      context: ./frontend/vue-app
+      dockerfile: Dockerfile
+    container_name: turf_frontend
+    command: sh -c "npm install && npm run dev -- --host"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend/vue-app:/app
+      - /app/node_modules
+    environment:
+      VITE_API_URL: http://localhost:8080/api
+    depends_on:
+      - nginx
+    networks:
+      - turf_net
+
+networks:
+  turf_net:
+    driver: bridge

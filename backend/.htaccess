@@ -1,0 +1,90 @@
+# TURF Reporting App - cPanel Production Configuration
+
+RewriteEngine On
+RewriteBase /
+
+# --- Forzar HTTPS ---
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# --- Bloquear archivos sensibles ---
+<FilesMatch "\.(env|log|sql|md|json|lock|gitignore|gitattributes)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# --- Bloquear carpetas de dev ---
+RewriteRule ^(config|database|storage|vendor|node_modules|src|\.git)/ - [F,L]
+
+# --- Router de la API ---
+# Todo lo que empiece con /api/ va a tu router PHP
+RewriteRule ^api/(.*)$ api/Routes/api.php?route=$1 [QSA,L]
+
+# Responder rápido a preflight OPTIONS con 204 y headers CORS (si Origin permitido)
+RewriteCond %{REQUEST_METHOD} =OPTIONS
+RewriteRule ^ - [R=204,L]
+
+# --- SPA (Vue Router history) ---
+# No reescribir archivos o carpetas reales
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# No reescribir la API
+RewriteCond %{REQUEST_URI} ^/api/ [NC]
+RewriteRule ^ - [L]
+
+# Enviar el resto al index.html del build
+RewriteRule . /index.html [L]
+
+# --- Headers de seguridad + CORS ---
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # CSP: permitir tus CDNs (jsDelivr, Cloudflare, Google Fonts)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; connect-src 'self';"
+
+  # CORS dinámico para desarrollo: permitir localhost:5173/3000 con credenciales
+  SetEnvIfNoCase Origin "^https?://(localhost|127\.0\.0\.1):(5173|3000)$" CORS_ORIGIN=$0
+  Header always set Access-Control-Allow-Origin "%{CORS_ORIGIN}e" env=CORS_ORIGIN
+  Header always set Access-Control-Allow-Credentials "true" env=CORS_ORIGIN
+  Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS" env=CORS_ORIGIN
+  Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With, X-CSRF-Token" env=CORS_ORIGIN
+  Header always set Vary "Origin" env=CORS_ORIGIN
+</IfModule>
+
+# --- Compresión ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css application/xml application/xhtml+xml application/rss+xml application/javascript application/x-javascript application/json image/svg+xml
+</IfModule>
+
+# --- Cache estáticos ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/json "access plus 0 seconds"
+</IfModule>
+
+# --- PHP ---
+<IfModule mod_php.c>
+  php_value upload_max_filesize 10M
+  php_value post_max_size 10M
+  php_value memory_limit 256M
+  php_value max_execution_time 60
+  php_value session.cookie_httponly 1
+  php_value session.cookie_secure 1
+  php_value session.use_strict_mode 1
+  php_value display_errors 0
+  php_value log_errors 1
+</IfModule>

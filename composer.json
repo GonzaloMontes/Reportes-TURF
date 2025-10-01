@@ -1,0 +1,40 @@
+{
+    "name": "turf/reporting-app",
+    "description": "Sistema de reportería TURF con arquitectura escalable y diseño BI",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "TURF Development Team",
+            "email": "dev@turf.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "ext-json": "*",
+        "ext-openssl": "*",
+        "ext-mbstring": "*",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TurfReports\\": "api/"
+        }
+    },
+    "scripts": {
+        "test": "php tests/test_cases.php",
+        "install-db": "mysql -u root -p < database/schema.sql && mysql -u root -p < database/unified_views.sql",
+        "sample-data": "mysql -u root -p turf_reports < tests/sample_data.sql",
+        "cron-update": "php scripts/cron_jobs.php"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
