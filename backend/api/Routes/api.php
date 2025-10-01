@@ -26,15 +26,15 @@ if (file_exists($envFile)) {
     }
 }
 
-// Configurar cookies de sesión compatibles con contexto cross-site en desarrollo
+// Configurar cookies de sesión para desarrollo local
 if (PHP_VERSION_ID >= 70300) {
     session_set_cookie_params([
         'lifetime' => 0,
         'path' => '/',
         'domain' => '',
-        'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on',
+        'secure' => false,
         'httponly' => true,
-        'samesite' => 'None'
+        'samesite' => 'Lax'
     ]);
 }
 if (session_status() === PHP_SESSION_NONE) {
@@ -61,25 +61,24 @@ header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 header('X-XSS-Protection: 1; mode=block');
 
-// CORS para desarrollo (ajustar en producción)
-$origin = $_SERVER['HTTP_ORIGIN'] ?? null;
-if (!$origin && isset($_SERVER['HTTP_REFERER'])) {
-    $ref = parse_url($_SERVER['HTTP_REFERER']);
-    if ($ref && isset($ref['scheme'], $ref['host'])) {
-        $origin = $ref['scheme'] . '://' . $ref['host'] . (isset($ref['port']) ? ':' . $ref['port'] : '');
-    }
-}
-if ($origin) {
+// CORS para desarrollo local - permitir localhost:5173
+$allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:8080'
+];
+
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins)) {
     header('Access-Control-Allow-Origin: ' . $origin);
     header('Access-Control-Allow-Credentials: true');
     header('Access-Control-Max-Age: 86400');
-    header('Vary: Origin');
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type, Authorization, X-CSRF-Token, X-Requested-With');
     header('Access-Control-Allow-Credentials: true');
+    http_response_code(200);
     exit(0);
 }
 

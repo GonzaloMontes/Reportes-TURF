@@ -1,0 +1,60 @@
+[01-Oct-2025 21:48:30 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 21:48:30 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 21:48:30 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 21:48:30 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 21:48:30 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 21:48:30 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 21:48:38 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 21:48:38 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 21:48:38 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 21:48:38 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 21:48:38 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 21:48:38 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 21:48:39 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 21:48:39 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 21:48:39 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 21:48:39 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 21:48:39 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 21:48:39 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 21:48:40 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 21:48:40 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 21:48:40 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 21:48:40 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 21:48:40 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 21:48:40 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 21:48:40 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 21:48:40 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 21:48:40 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 21:48:40 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 21:48:40 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 21:48:40 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 21:48:41 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 21:48:41 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 21:48:41 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 21:48:41 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 21:48:41 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 21:48:41 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 21:48:41 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 21:48:41 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 21:48:41 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 21:48:41 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 21:48:41 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 21:48:41 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 21:48:42 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 21:48:42 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 21:48:42 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 21:48:42 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 21:48:42 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 21:48:42 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 21:48:43 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
+[01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_HOST" in /var/www/html/Core/DatabaseManager.php on line 38
+[01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_NAME" in /var/www/html/Core/DatabaseManager.php on line 40
+[01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_USER" in /var/www/html/Core/DatabaseManager.php on line 41
+[01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "DB_AGENCIAS_PASS" in /var/www/html/Core/DatabaseManager.php on line 42
+[01-Oct-2025 21:48:43 UTC] API Error: Error de conexión a : SQLSTATE[HY000] [2002] No such file or directory in /var/www/html/Core/DatabaseManager.php:69
+[01-Oct-2025 21:48:43 UTC] PHP Warning:  Undefined array key "APP_DEBUG" in /var/www/html/Routes/api.php on line 230
