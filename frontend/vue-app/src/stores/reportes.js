@@ -83,6 +83,9 @@ export const useReportesStore = defineStore('reportes', () => {
         case 'tickets-anulados':
           respuesta = await reportesApi.obtenerTicketsAnulados(filtrosFinales)
           break
+        case 'informe-parte-venta':
+          respuesta = await reportesApi.obtenerInformeParteVenta(filtrosFinales)
+          break
         case 'ventas-diarias':
           respuesta = await reportesApi.obtenerVentasDiarias(filtrosFinales)
           break

@@ -101,6 +101,7 @@ export const reportesApi = {
   obtenerCaballosRetirados: (filtros) => apiClient.get('/reports/caballos-retirados', { params: filtros }),
   obtenerCarreras: (filtros) => apiClient.get('/reports/carreras', { params: filtros }),
   obtenerTicketsAnulados: (filtros) => apiClient.get('/reports/tickets-anulados', { params: filtros }),
+  obtenerInformeParteVenta: (filtros) => apiClient.get('/reports/informe-parte-venta', { params: filtros }),
 
   // Endpoints de reportes (Agencia)
   obtenerVentasDiarias: (filtros) => apiClient.get('/reports/agencia/ventas-diarias', { params: filtros }),

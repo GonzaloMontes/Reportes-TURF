@@ -103,6 +103,41 @@
                 <i :class="reporte.icono" class="text-xl mr-3"></i>
                 <span class="font-medium">{{ reporte.nombre }}</span>
               </button>
+
+              <!-- Menú Desplegable: Informe (solo Admin) -->
+              <div v-if="authStore.esAdmin" class="border-2 border-gray-200 rounded-lg">
+                <button
+                  @click="toggleInformeMenu"
+                  :class="[
+                    'w-full p-4 rounded-lg transition-colors text-left flex items-center justify-between',
+                    menuInformeAbierto || reportesStore.reporteActual === 'informe-parte-venta'
+                      ? 'bg-blue-50 text-blue-700'
+                      : 'hover:bg-gray-50'
+                  ]"
+                >
+                  <div class="flex items-center">
+                    <i class="fas fa-file-invoice text-xl mr-3"></i>
+                    <span class="font-medium">Informe</span>
+                  </div>
+                  <i :class="menuInformeAbierto ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="text-sm"></i>
+                </button>
+                
+                <!-- Sub-reportes -->
+                <div v-show="menuInformeAbierto" class="bg-gray-50 px-4 pb-2">
+                  <button
+                    @click="seleccionarReporte('informe-parte-venta', 'agencia')"
+                    :class="[
+                      'w-full p-3 mt-2 rounded-lg border transition-colors text-left flex items-center',
+                      reportesStore.reporteActual === 'informe-parte-venta'
+                        ? 'border-blue-500 bg-white text-blue-700 font-medium'
+                        : 'border-gray-200 bg-white hover:border-blue-300'
+                    ]"
+                  >
+                    <i class="fas fa-chart-pie text-lg mr-3"></i>
+                    <span>Parte de Venta</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -471,7 +506,14 @@
               :color="obtenerColorKPI(clave)"
             />
           </div>
-          
+
+          <!-- Tabla especial para Informe - Parte de Venta -->
+          <TablaInformeParteVenta
+            v-if="reportesStore.reporteActual === 'informe-parte-venta'"
+            :kpis="reportesStore.kpis"
+            :cargando="reportesStore.cargando"
+            :error="reportesStore.error"
+          />
 
           <!-- Tabla especial para reporte Por Usuario de AppWeb -->
           <div v-if="reportesStore.origenActual === 'appweb' && reportesStore.reporteActual === 'por-usuario' && reportesStore.datosReporte.length > 0"
@@ -621,6 +663,7 @@ import { useReportesStore } from '../stores/reportes'
 import { apiClient, reportesApi } from '../services/api'
 import KPICard from './KPICard.vue'
 import TablaReportes from './TablaReportes.vue'
+import TablaInformeParteVenta from './TablaInformeParteVenta.vue'
 
 // Stores
 const authStore = useAuthStore()
@@ -628,6 +671,7 @@ const reportesStore = useReportesStore()
 
 // Estado reactivo
 const menuVisible = ref(false)
+const menuInformeAbierto = ref(false)
 const agencias = ref([])
 const usuariosExpandidos = ref(new Set())
 const detallesUsuarios = ref({})
@@ -644,6 +688,11 @@ onMounted(async () => {
     } catch (error) {
       console.error('Error cargando agencias:', error)
     }
+  }
+
+  // Abrir menú "Informe" si el reporte actual es "informe-parte-venta"
+  if (reportesStore.reporteActual === 'informe-parte-venta') {
+    menuInformeAbierto.value = true
   }
 })
 
@@ -806,6 +855,13 @@ function alternarMenuLateral() {
 }
 
 /**
+ * Alterna el menú desplegable de Informe
+ */
+function toggleInformeMenu() {
+  menuInformeAbierto.value = !menuInformeAbierto.value
+}
+
+/**
  * Selecciona un menú y carga el contenido correspondiente
  */
 async function seleccionarMenu(idMenu) {
@@ -896,7 +952,8 @@ async function cargarReporte() {
         'ventas-tickets': 'lista-tickets',
         'caballos-retirados': 'caballos-retirados',
         'carreras': 'carreras',
-        'tickets-anulados': 'tickets-anulados'
+        'tickets-anulados': 'tickets-anulados',
+        'informe-parte-venta': 'informe-parte-venta'
       }
       endpoint = `reports/${mapaEndpoints[reportesStore.reporteActual] || reportesStore.reporteActual}`
     }
@@ -941,7 +998,11 @@ function formatearTituloKPI(clave) {
     'total_general_apuestas': 'Total Apuestas',
     'total_a_devolver': 'Total a Devolver',
     'total_devuelto': 'Total Devuelto',
-    'total_general_devolver': 'Total a Devolver'
+    'total_general_devolver': 'Total a Devolver',
+    'ventas_boletos': 'Ventas Boletos',
+    'cancelados': 'Cancelados',
+    'retirados': 'Retirados',
+    'venta_neta_boletos': 'Venta Neta Boletos'
   }
   return titulos[clave] || clave.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 }
@@ -953,7 +1014,8 @@ function obtenerTipoKPI(clave) {
   const tiposMoneda = [
     'total_vendido', 'total_ganadores', 'total_pagados', 'ganancia', 
     'total_apostado', 'total_devoluciones', 'total_general_apuestas',
-    'total_a_devolver', 'total_devuelto', 'total_general_devolver'
+    'total_a_devolver', 'total_devuelto', 'total_general_devolver',
+    'ventas_boletos', 'cancelados', 'retirados', 'venta_neta_boletos'
   ]
   return tiposMoneda.includes(clave) ? 'moneda' : 'numero'
 }

@@ -192,6 +192,29 @@ class ReportController
     }
 
     /**
+     * Endpoint para el Informe de Parte de Venta.
+     * 
+     * Consolida datos de ventas, cancelaciones y retirados para mostrar
+     * un resumen ejecutivo de la venta neta de boletos.
+     * 
+     * Este reporte está disponible solo para el ROL ADMIN en el módulo AGENCIA.
+     */
+    public function informeParteVenta()
+    {
+        $this->auth->requireAuth();
+        $this->auth->requirePermission('view_agency_reports');
+
+        try {
+            $filtros = $this->obtenerFiltros();
+            $datos = $this->reportService->getInformeParteVenta($filtros);
+            $this->registrarAccesoReporte('informe_parte_venta', $filtros);
+            $this->respuestaJson($datos);
+        } catch (Exception $e) {
+            $this->manejarError($e, 'Error al obtener el Informe de Parte de Venta');
+        }
+    }
+
+    /**
      * Endpoint para los KPIs del dashboard.
      */
     public function getKpis()

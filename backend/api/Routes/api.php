@@ -149,6 +149,9 @@ try {
     } elseif ($route === 'reports/tickets-anulados' && $method === 'GET') {
         (new \TurfReports\Core\Auth())->requireAuth();
         (new ReportController())->ticketsAnulados();
+    } elseif ($route === 'reports/informe-parte-venta' && $method === 'GET') {
+        (new \TurfReports\Core\Auth())->requireAuth();
+        (new ReportController())->informeParteVenta();
     // --- RUTAS PARA REPORTES DE AGENCIA ---
     } elseif ($route === 'reports/agencia/ventas-diarias' && $method === 'GET') {
         (new ReportController())->ventasDiariasAgencia();

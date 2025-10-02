@@ -859,4 +859,63 @@ class ReportService
         $data = $this->db->query($query, 'agencias', $params)->fetchAll(PDO::FETCH_ASSOC);
         return ['data' => $data];
     }
+
+    /**
+     * Obtiene el Informe de Parte de Venta.
+     * 
+     * Este reporte consolida información de ventas, cancelaciones y retirados
+     * para generar un resumen de la venta neta de boletos.
+     * 
+     * Reutiliza los métodos existentes:
+     * - getListaTickets() → Ventas Boletos
+     * - getTicketsAnulados() → Cancelados
+     * - getCaballosRetirados() → Retirados
+     * 
+     * @param array $filters Filtros (fecha_desde, fecha_hasta, agencia_id)
+     * @return array KPIs consolidados del informe
+     */
+    public function getInformeParteVenta(array $filters = [])
+    {
+        try {
+            // 1. OBTENER VENTAS BOLETOS (de getListaTickets)
+            $ventasData = $this->getListaTickets($filters);
+            $ventasBoletos = (float)($ventasData['total_vendido'] ?? 0);
+
+            // 2. OBTENER CANCELADOS (de getTicketsAnulados para ROL ADMIN)
+            $anuladosData = $this->getTicketsAnulados($filters);
+            $cancelados = (float)($anuladosData['total_anulado'] ?? 0);
+
+            // 3. OBTENER RETIRADOS (de getCaballosRetirados)
+            $retiradosData = $this->getCaballosRetirados($filters);
+            $retirados = (float)($retiradosData['total_devuelto'] ?? 0);
+
+            // 4. CALCULAR VENTA NETA
+            $ventaNeta = $ventasBoletos - $cancelados - $retirados;
+
+            // 5. RETORNAR ESTRUCTURA CON KPIs
+            return [
+                'kpis' => [
+                    'ventas_boletos' => $ventasBoletos,
+                    'cancelados' => $cancelados,
+                    'retirados' => $retirados,
+                    'venta_neta_boletos' => $ventaNeta
+                ],
+                'data' => [] // Este reporte solo muestra KPIs, no registros detallados
+            ];
+
+        } catch (\Exception $e) {
+            error_log("ERROR getInformeParteVenta: " . $e->getMessage());
+            
+            // Retornar estructura vacía en caso de error
+            return [
+                'kpis' => [
+                    'ventas_boletos' => 0,
+                    'cancelados' => 0,
+                    'retirados' => 0,
+                    'venta_neta_boletos' => 0
+                ],
+                'data' => []
+            ];
+        }
+    }
 }
