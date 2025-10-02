@@ -9,8 +9,6 @@ ini_set('display_startup_errors', 0);
 error_reporting(E_ALL);
 // --- FIN LOGGING ---
 
-
-
 // Cargar variables de entorno desde el archivo .env
 $envFile = __DIR__ . '/../../.env';
 if (file_exists($envFile)) {
@@ -161,10 +159,6 @@ try {
         (new ReportController())->sportsCarrerasAgencia();
     } elseif ($route === 'reports/agencia/tickets-anulados' && $method === 'GET') {
         (new ReportController())->ticketsAnuladosAgencia();
-    } elseif ($route === 'reports/export' && $method === 'POST') {
-        (new ReportController())->export();
-    } elseif (preg_match('/^download\/(.+)$/', $route, $m) && $method === 'GET') {
-        (new ReportController())->download($m[1]);
     
     // --- RUTAS PARA REPORTES DE APPWEB ---
     } elseif ($route === 'reports/appweb/por-usuario' && $method === 'GET') {

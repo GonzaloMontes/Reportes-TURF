@@ -107,12 +107,7 @@ export const reportesApi = {
   obtenerVentasDiarias: (filtros) => apiClient.get('/reports/agencia/ventas-diarias', { params: filtros }),
   obtenerTicketsDevoluciones: (filtros) => apiClient.get('/reports/agencia/tickets-devoluciones', { params: filtros }),
   obtenerSportsCarreras: (filtros) => apiClient.get('/reports/agencia/sports-carreras', { params: filtros }),
-  obtenerTicketsAnuladosAgencia: (filtros) => apiClient.get('/reports/agencia/tickets-anulados', { params: filtros }),
-
-  // Endpoint de exportación
-  exportarReporte: (datos, csrfToken) => apiClient.post('/reports/export', datos, {
-    headers: csrfToken ? { 'X-CSRF-Token': csrfToken } : {}
-  })
+  obtenerTicketsAnuladosAgencia: (filtros) => apiClient.get('/reports/agencia/tickets-anulados', { params: filtros })
 }
 
 export default apiClient

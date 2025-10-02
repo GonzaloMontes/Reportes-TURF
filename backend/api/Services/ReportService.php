@@ -89,25 +89,19 @@ class ReportService
 
         $summary = $this->db->query($query, 'agencias', $params)->fetch(PDO::FETCH_ASSOC);
 
-        error_log("DEBUG getListaTickets - Summary raw: " . json_encode($summary));
-
         $totalVendido = (float)($summary['total_vendido'] ?? 0);
         $totalGanadores = (float)($summary['total_ganadores'] ?? 0);
         $totalPagados = (float)($summary['total_pagados'] ?? 0);
         $totalDevoluciones = (float)($summary['total_devoluciones'] ?? 0);
         $ganancia = $totalVendido - $totalPagados;
 
-        $resultado = [
+        return [
             'total_vendido' => $totalVendido,
             'total_ganadores' => $totalGanadores,
             'total_pagados' => $totalPagados,
             'total_devoluciones' => $totalDevoluciones,
             'ganancia' => $ganancia
         ];
-        
-        error_log("DEBUG getListaTickets - Resultado final: " . json_encode($resultado));
-        
-        return $resultado;
     }
 
     /**
@@ -244,11 +238,7 @@ class ReportService
         ";
         $totals = $this->db->query($totalQuery, 'agencias', $params)->fetch(PDO::FETCH_ASSOC);
 
-        // 3. CONSULTA PARA OBTENER LOS DATOS PAGINADOS
-        $params[':limit'] = (int)($filters['limit'] ?? 100);
-        $params[':offset'] = (int)($filters['offset'] ?? 0);
-
-        // 3.1 CONSULTA PARA OBTENER TODOS LOS CABALLOS RETIRADOS (INCLUSO SIN APUESTAS)
+        // 3. CONSULTA PARA OBTENER TODOS LOS CABALLOS RETIRADOS (INCLUSO SIN APUESTAS)
         $dataQuery = "
             SELECT 
                 cr.fecha,
@@ -277,35 +267,23 @@ class ReportService
                 cr.fecha, cr.nro_caballo, cr.id_carrera
             ORDER BY
                 cr.fecha DESC, cr.nro_caballo ASC
-            LIMIT :limit OFFSET :offset
         ";
         
         $registros = $this->db->query($dataQuery, 'agencias', $params)->fetchAll(PDO::FETCH_ASSOC);
 
-        // 4. DEBUG: MOSTRAR CONSULTA Y REGISTROS OBTENIDOS
-        error_log("DEBUG - Consulta SQL ejecutada: " . $dataQuery);
-        error_log("DEBUG - Parámetros: " . json_encode($params));
-        error_log("DEBUG - Registros obtenidos: " . count($registros) . " de " . $totals['total_records'] . " totales");
-        
-        // 5. FORMATEAR FECHAS EN PHP PARA MAYOR CONTROL
+        // 4. FORMATEAR FECHAS EN PHP PARA MAYOR CONTROL
         foreach ($registros as &$registro) {
             $registro['fecha'] = $this->formatearFecha($registro['fecha']);
         }
 
-        error_log("DEBUG getCaballosRetirados - Totals raw: " . json_encode($totals));
-
         // 5. RETORNO DE DATOS ESTRUCTURADOS CON NUEVOS TOTALES
-        $resultado = [
+        return [
             'data' => $registros,
             'total_records' => (int)$totals['total_records'],
             'total_general' => (float)$totals['total_general'],
             'total_a_devolver' => (float)$totals['total_a_devolver'],
             'total_devuelto' => (float)$totals['total_devuelto']
         ];
-        
-        error_log("DEBUG getCaballosRetirados - Resultado final: " . json_encode($resultado));
-        
-        return $resultado;
     }
 
     /**
@@ -361,10 +339,7 @@ class ReportService
         ";
         $totals = $this->db->query($totalQuery, 'agencias', $params)->fetch(PDO::FETCH_ASSOC);
 
-        // 3. CONSULTA PARA OBTENER LOS DATOS PAGINADOS
-        $params[':limit'] = (int)($filters['limit'] ?? 100);
-        $params[':offset'] = (int)($filters['offset'] ?? 0);
-
+        // 3. CONSULTA PARA OBTENER LOS DATOS
         $dataQuery = "
             SELECT 
                 c.numero_carrera,
@@ -381,16 +356,9 @@ class ReportService
             {$whereSql}
             ORDER BY
                 STR_TO_DATE(c.fecha, '%d/%m/%Y') DESC, c.numero_carrera ASC
-            LIMIT :limit OFFSET :offset
         ";
         
         $registros = $this->db->query($dataQuery, 'agencias', $params)->fetchAll(PDO::FETCH_ASSOC);
-        
-        // Log de depuración para verificar datos obtenidos
-        error_log("DEBUG Carreras - Registros obtenidos: " . count($registros));
-        if (count($registros) > 0) {
-            error_log("DEBUG Carreras - Primer registro: " . json_encode($registros[0]));
-        }
 
         // 4. FORMATEAR FECHAS EN PHP
         foreach ($registros as &$registro) {
@@ -517,9 +485,6 @@ class ReportService
         // 1. CONSTRUCCIÓN DE FILTROS DINÁMICOS
         $whereClauses = [];
         $params = [];
-        
-        // Log de depuración para verificar filtros recibidos
-        error_log("DEBUG Tickets Anulados - Filtros recibidos: " . json_encode($filters));
 
         // Filtros de fecha - aplicados sobre la fecha del ticket
         if (!empty($filters['fecha_desde'])) {
@@ -538,9 +503,6 @@ class ReportService
         }
 
         $whereSql = count($whereClauses) > 0 ? 'AND ' . implode(' AND ', $whereClauses) : '';
-        
-        // Log de depuración para verificar consulta WHERE construida
-        error_log("DEBUG Tickets Anulados - WHERE construido: " . $whereSql);
 
         // 2. CONSULTA PARA OBTENER TOTALES
         $totalQuery = "
@@ -561,10 +523,7 @@ class ReportService
         ";
         $totals = $this->db->query($totalQuery, 'agencias', $params)->fetch(PDO::FETCH_ASSOC);
 
-        // 3. CONSULTA PARA OBTENER LOS DATOS PAGINADOS
-        $params[':limit'] = (int)($filters['limit'] ?? 100);
-        $params[':offset'] = (int)($filters['offset'] ?? 0);
-
+        // 3. CONSULTA PARA OBTENER LOS DATOS
         $dataQuery = "
             SELECT 
                 t.nro_ticket,
@@ -588,16 +547,9 @@ class ReportService
                 t.id_ticket, t.nro_ticket, t.fecha, t.hora, u.nombre_usuario, a.nombre_agencia
             ORDER BY
                 STR_TO_DATE(t.fecha, '%d/%m/%Y') DESC, t.hora DESC
-            LIMIT :limit OFFSET :offset
         ";
         
         $registros = $this->db->query($dataQuery, 'agencias', $params)->fetchAll(PDO::FETCH_ASSOC);
-        
-        // Log de depuración para verificar datos obtenidos
-        error_log("DEBUG Tickets Anulados - Registros obtenidos: " . count($registros));
-        if (count($registros) > 0) {
-            error_log("DEBUG Tickets Anulados - Primer registro: " . json_encode($registros[0]));
-        }
 
         // 4. FORMATEAR FECHAS EN PHP
         foreach ($registros as &$registro) {
@@ -620,9 +572,6 @@ class ReportService
      */
     public function getSportsCarrerasAgencia($idAgencia, $filtros = [])
     {
-        // Debug: Log parámetros de entrada
-        error_log("DEBUG getSportsCarrerasAgencia - ID Agencia: " . $idAgencia . ", Filtros: " . json_encode($filtros));
-        
         $params = [];
         $whereClauses = ["c.id_estado = 3"]; // Solo carreras finalizadas
 
@@ -638,7 +587,6 @@ class ReportService
 
         $whereSql = 'WHERE ' . implode(' AND ', $whereClauses);
 
-        // Debug: Log consulta SQL
         $query = "
             SELECT 
                 c.id_carrera,
@@ -653,56 +601,45 @@ class ReportService
             {$whereSql}
             ORDER BY h.nombre_hipodromo, c.numero_carrera ASC
         ";
+
+        $carreras = $this->db->query($query, 'agencias', $params)->fetchAll(PDO::FETCH_ASSOC);
         
-        error_log("DEBUG getSportsCarrerasAgencia - Query: " . $query);
-        error_log("DEBUG getSportsCarrerasAgencia - Params: " . json_encode($params));
-
-        try {
-            $carreras = $this->db->query($query, 'agencias', $params)->fetchAll(PDO::FETCH_ASSOC);
-            error_log("DEBUG getSportsCarrerasAgencia - Carreras encontradas: " . count($carreras));
-            
-            if (empty($carreras)) {
-                return ['carreras' => []];
-            }
-
-            // Obtener resultados de caballos para las carreras encontradas
-            $carreraIds = array_column($carreras, 'id_carrera');
-            $placeholders = str_repeat('?,', count($carreraIds) - 1) . '?';
-
-            $queryResultados = "
-                SELECT 
-                    cs.id_carrera,
-                    cs.id_caballo,
-                    cs.posicion_llegada,
-                    cs.sport_ganador,
-                    cs.sport_segundo,
-                    cs.sport_tercero
-                FROM tbl_caballos_sports cs
-                WHERE cs.id_carrera IN ({$placeholders})
-                ORDER BY cs.id_carrera, cs.posicion_llegada ASC
-            ";
-
-            $resultados = $this->db->query($queryResultados, 'agencias', $carreraIds)->fetchAll(PDO::FETCH_ASSOC);
-            error_log("DEBUG getSportsCarrerasAgencia - Resultados encontrados: " . count($resultados));
-
-            // Organizar resultados por carrera
-            $resultadosPorCarrera = [];
-            foreach ($resultados as $resultado) {
-                $resultadosPorCarrera[$resultado['id_carrera']][] = $resultado;
-            }
-
-            // Combinar datos
-            foreach ($carreras as &$carrera) {
-                $idCarrera = $carrera['id_carrera'];
-                $carrera['resultados_caballos'] = $resultadosPorCarrera[$idCarrera] ?? [];
-            }
-
-            return ['carreras' => $carreras];
-            
-        } catch (Exception $e) {
-            error_log("DEBUG getSportsCarrerasAgencia - Error: " . $e->getMessage());
-            throw $e;
+        if (empty($carreras)) {
+            return ['carreras' => []];
         }
+
+        // Obtener resultados de caballos para las carreras encontradas
+        $carreraIds = array_column($carreras, 'id_carrera');
+        $placeholders = str_repeat('?,', count($carreraIds) - 1) . '?';
+
+        $queryResultados = "
+            SELECT 
+                cs.id_carrera,
+                cs.id_caballo,
+                cs.posicion_llegada,
+                cs.sport_ganador,
+                cs.sport_segundo,
+                cs.sport_tercero
+            FROM tbl_caballos_sports cs
+            WHERE cs.id_carrera IN ({$placeholders})
+            ORDER BY cs.id_carrera, cs.posicion_llegada ASC
+        ";
+
+        $resultados = $this->db->query($queryResultados, 'agencias', $carreraIds)->fetchAll(PDO::FETCH_ASSOC);
+
+        // Organizar resultados por carrera
+        $resultadosPorCarrera = [];
+        foreach ($resultados as $resultado) {
+            $resultadosPorCarrera[$resultado['id_carrera']][] = $resultado;
+        }
+
+        // Combinar datos
+        foreach ($carreras as &$carrera) {
+            $idCarrera = $carrera['id_carrera'];
+            $carrera['resultados_caballos'] = $resultadosPorCarrera[$idCarrera] ?? [];
+        }
+
+        return ['carreras' => $carreras];
     }
 
     /**

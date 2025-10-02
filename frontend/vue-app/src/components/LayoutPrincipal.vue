@@ -239,23 +239,6 @@
                   <i :class="reportesStore.cargando ? 'fas fa-spinner fa-spin' : 'fas fa-search'" class="mr-2"></i>
                   {{ reportesStore.cargando ? 'Cargando...' : 'Aplicar Filtros' }}
                 </button>
-                <!-- Exportación (solo rol Agencia y reportes permitidos) -->
-                <div v-if="authStore.esAgencia && exportDisponible" class="flex items-center space-x-2">
-                  <select v-model="formatoExport" class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="csv">CSV</option>
-                    <option value="pdf">PDF</option>
-                    <option value="xlsx">Excel</option>
-                  </select>
-                  <button
-                    @click="exportar(formatoExport)"
-                    :disabled="exportando"
-                    class="px-4 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
-                    title="Exportar reporte"
-                  >
-                    <i :class="exportando ? 'fas fa-spinner fa-spin' : 'fas fa-download'" class="mr-2"></i>
-                    Exportar
-                  </button>
-                </div>
               </div>
             </div>
           </div>
@@ -289,27 +272,6 @@
                     {{ infoReporteActual.nombre }}
                   </h2>
                 </div>
-              </div>
-              <!-- Acciones de exportación (solo Agencia) -->
-              <div v-if="authStore.esAgencia && exportDisponible" class="flex items-center space-x-2">
-                <button
-                  @click="exportar('csv')"
-                  :disabled="exportando"
-                  class="px-3 py-2 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
-                  title="Exportar a CSV"
-                >
-                  <i :class="exportando ? 'fas fa-spinner fa-spin' : 'fas fa-file-csv'" class="mr-2"></i>
-                  CSV
-                </button>
-                <button
-                  @click="exportar('pdf')"
-                  :disabled="exportando"
-                  class="px-3 py-2 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
-                  title="Exportar a PDF"
-                >
-                  <i :class="exportando ? 'fas fa-spinner fa-spin' : 'fas fa-file-pdf'" class="mr-2"></i>
-                  PDF
-                </button>
               </div>
             </div>
           </div>
@@ -766,75 +728,6 @@ const mostrarFiltroAgencia = computed(() => {
   return reportesConFiltroAgencia.includes(reportesStore.reporteActual)
 })
 
-// Exportación disponible solo para reportes del rol Agencia
-const exportando = ref(false)
-const reportesExportAgencia = ['ventas-diarias', 'tickets-devoluciones', 'sports-carreras', 'tickets-anulados']
-const exportDisponible = computed(() => {
-  return reportesStore.origenActual === 'agencia' && reportesExportAgencia.includes(reportesStore.reporteActual)
-})
-const formatoExport = ref('csv')
-
-/**
- * Mapea el identificador del reporte actual al tipo esperado por el backend para exportación.
- * Ejemplos:
- *  - 'ventas-diarias' -> 'ventas_diarias'
- *  - 'tickets-devoluciones' -> 'tickets_devoluciones'
- */
-function mapearTipoReporteExport() {
-  const mapa = {
-    'ventas-diarias': 'ventas_diarias',
-    'tickets-devoluciones': 'tickets_devoluciones',
-    'sports-carreras': 'sports_carreras',
-    'tickets-anulados': 'tickets_anulados'
-  }
-  return mapa[reportesStore.reporteActual] || reportesStore.reporteActual
-}
-
-/**
- * Construye los filtros en el formato que espera el backend.
- */
-function construirFiltrosExport() {
-  const filtros = {
-    fecha_desde: reportesStore.filtros.fechaDesde || undefined,
-    fecha_hasta: reportesStore.filtros.fechaHasta || undefined,
-    agencia_id: reportesStore.filtros.agenciaId || undefined,
-    hipodromo_id: reportesStore.filtros.hipodromoId || undefined,
-    numero_carrera: reportesStore.filtros.numeroCarrera || undefined
-  }
-  // Eliminar undefined para no enviar claves vacías
-  Object.keys(filtros).forEach(k => filtros[k] === undefined && delete filtros[k])
-  return filtros
-}
-
-/**
- * Ejecuta la exportación en el formato solicitado y abre la descarga.
- * Solo aplica para rol Agencia en los reportes permitidos.
- */
-async function exportar(formato = 'csv') {
-  if (!exportDisponible.value || exportando.value) return
-  exportando.value = true
-  try {
-    const payload = {
-      report_type: mapearTipoReporteExport(),
-      format: formato,
-      filters: construirFiltrosExport()
-    }
-    const resp = await reportesApi.exportarReporte(payload, authStore.tokenCsrf)
-    const urlDescarga = resp.download_url || resp.url || resp.download || null
-    if (urlDescarga) {
-      // Abrir en nueva pestaña para iniciar la descarga
-      window.open(urlDescarga, '_blank')
-    } else {
-      console.warn('Exportación generada pero sin URL de descarga', resp)
-    }
-  } catch (e) {
-    console.error('Error exportando reporte:', e)
-    alert('No se pudo exportar el reporte: ' + (e.message || 'Error desconocido'))
-  } finally {
-    exportando.value = false
-  }
-}
-
 // KPIs filtrados (ocultar devoluciones para admin)
 const kpisFiltrados = computed(() => {
   const kpis = { ...reportesStore.kpis }
@@ -912,9 +805,7 @@ async function cargarReporte() {
       fecha_hasta: reportesStore.filtros.fechaHasta,
       agencia_id: reportesStore.filtros.agenciaId,
       hipodromo_id: reportesStore.filtros.hipodromoId,
-      numero_carrera: reportesStore.filtros.numeroCarrera,
-      page: reportesStore.paginacion.paginaActual,
-      limit: reportesStore.paginacion.registrosPorPagina
+      numero_carrera: reportesStore.filtros.numeroCarrera
     }
 
     // Solo agregar buscar_usuario para reportes AppWeb
