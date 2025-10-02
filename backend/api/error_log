@@ -800,3 +800,661 @@ Stack trace:
 [02-Oct-2025 13:51:50 UTC] DEBUG formatearFecha - Input: '2025-06-27' (tipo: string)
 [02-Oct-2025 13:51:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-06-27 -> 27/06/2025
 [02-Oct-2025 13:51:50 UTC] Acceso a reporte: usuario=1, reporte=informe_parte_venta, filtros={"fecha_desde":"2025-05-01","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 15:14:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:14:06 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 15:14:06 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 15:14:06 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 15:14:06 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 15:14:06 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 15:14:06 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 15:14:06 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 15:14:06 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 15:14:06 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 15:14:06 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:14:06 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:14:06 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:14:08 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:14:08 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:14:08 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:14:08 UTC] Acceso a reporte: usuario=1, reporte=informe_parte_venta, filtros={"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 15:14:11 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:14:11 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:14:11 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '31/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 31/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '06/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 06/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '05/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 05/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '04/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 04/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '30/06/2025' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Ya en formato correcto: 30/06/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-15' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-15 -> 15/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-14' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-14 -> 14/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-11' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-11 -> 11/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-10' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-10 -> 10/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-08' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-08 -> 08/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Input: '2025-06-27' (tipo: string)
+[02-Oct-2025 15:14:12 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-06-27 -> 27/06/2025
+[02-Oct-2025 15:14:12 UTC] Acceso a reporte: usuario=1, reporte=informe_parte_venta, filtros={"fecha_desde":"2025-05-01","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 15:26:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:27:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:27:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:27:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:30:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:31:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:42:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:42:50 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 15:42:50 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 15:42:50 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 15:42:50 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 15:42:50 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 15:42:50 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 15:42:50 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 15:42:50 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 15:42:50 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 15:42:50 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:50 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:42:50 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:51 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:51 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:42:51 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:51 UTC] Acceso a reporte: usuario=1, reporte=informe-por-agencia, filtros={"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 15:42:54 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:54 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:42:54 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:54 UTC] Acceso a reporte: usuario=1, reporte=informe-por-agencia, filtros={"fecha_desde":"2025-07-01","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 15:42:56 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:56 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:42:56 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:56 UTC] Acceso a reporte: usuario=1, reporte=lista_tickets, filtros={"fecha_desde":"2025-07-01","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 15:42:56 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:56 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:42:56 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-15' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-15 -> 15/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-14' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-14 -> 14/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-11' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-11 -> 11/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-10' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-10 -> 10/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-08' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-08 -> 08/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[02-Oct-2025 15:42:56 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[02-Oct-2025 15:42:57 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:57 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:42:57 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:57 UTC] DEBUG Carreras - Filtros recibidos: {"fecha_desde":"2025-07-01","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 15:42:57 UTC] DEBUG Carreras - WHERE SQL: WHERE STR_TO_DATE(c.fecha, '%d/%m/%Y') >= STR_TO_DATE(:fecha_desde, '%Y-%m-%d') AND STR_TO_DATE(c.fecha, '%d/%m/%Y') <= STR_TO_DATE(:fecha_hasta, '%Y-%m-%d')
+[02-Oct-2025 15:42:57 UTC] DEBUG Carreras - Parámetros: {":fecha_desde":"2025-07-01",":fecha_hasta":"2025-10-02"}
+[02-Oct-2025 15:42:57 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:57 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:42:57 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '31/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 31/07/2025
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '06/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 06/07/2025
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '05/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 05/07/2025
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '04/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 04/07/2025
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 15:42:57 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 15:44:26 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 15:44:26 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 15:44:26 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 15:44:26 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 15:44:26 UTC] DEBUG Login - Contraseña enviada: admin123aa
+[02-Oct-2025 15:44:26 UTC] DEBUG Login - Contraseña MD5: 2da4e7e4cd4cc5b3f176695179ea4b75
+[02-Oct-2025 15:44:26 UTC] DEBUG Login - Coinciden MD5: NO
+[02-Oct-2025 15:44:26 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 15:44:27 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:48:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:48:43 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 15:48:43 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 15:48:43 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 15:48:43 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 15:48:43 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 15:48:43 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 15:48:43 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 15:48:43 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 15:48:43 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 15:48:43 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:48:43 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:48:43 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:50:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:53:01 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:58:53 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 15:59:19 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 15:59:19 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 15:59:19 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 15:59:19 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 15:59:19 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 15:59:19 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 15:59:19 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 15:59:19 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 15:59:19 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 15:59:19 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 15:59:19 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 15:59:19 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:48 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:02:48 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 16:02:48 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 16:02:48 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:02:48 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 16:02:48 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:02:48 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 16:02:48 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 16:02:48 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 16:02:48 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:48 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:02:48 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:49 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:49 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:02:49 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:49 UTC] Acceso a reporte: usuario=1, reporte=informe-por-agencia, filtros={"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:02:50 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:50 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:02:50 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:50 UTC] Acceso a reporte: usuario=1, reporte=lista_tickets, filtros={"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:02:50 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:50 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:02:50 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:50 UTC] DEBUG Carreras - Filtros recibidos: {"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:02:50 UTC] DEBUG Carreras - WHERE SQL: WHERE STR_TO_DATE(c.fecha, '%d/%m/%Y') >= STR_TO_DATE(:fecha_desde, '%Y-%m-%d') AND STR_TO_DATE(c.fecha, '%d/%m/%Y') <= STR_TO_DATE(:fecha_hasta, '%Y-%m-%d')
+[02-Oct-2025 16:02:50 UTC] DEBUG Carreras - Parámetros: {":fecha_desde":"2025-09-02",":fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:02:50 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:50 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:02:50 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:51 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:51 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:02:51 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:02:51 UTC] Acceso a reporte: usuario=1, reporte=informe_parte_venta, filtros={"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:03:50 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:03:50 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:03:50 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '31/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 31/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '06/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 06/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '05/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 05/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '04/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 04/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '30/06/2025' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Ya en formato correcto: 30/06/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-15' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-15 -> 15/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-14' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-14 -> 14/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-11' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-11 -> 11/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-10' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-10 -> 10/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-08' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-08 -> 08/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Input: '2025-06-27' (tipo: string)
+[02-Oct-2025 16:03:50 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-06-27 -> 27/06/2025
+[02-Oct-2025 16:03:50 UTC] Acceso a reporte: usuario=1, reporte=informe_parte_venta, filtros={"fecha_desde":"2025-05-01","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:04:28 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:04:28 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 16:04:28 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 16:04:28 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:04:28 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 16:04:28 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:04:28 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 16:04:28 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 16:04:28 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 16:04:28 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:04:28 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:04:28 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:04:59 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:04:59 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 16:04:59 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 16:04:59 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:04:59 UTC] DEBUG Login - Contraseña enviada: admin12311
+[02-Oct-2025 16:04:59 UTC] DEBUG Login - Contraseña MD5: fcee95dd13a005f3c3d22d618e8b7bf9
+[02-Oct-2025 16:04:59 UTC] DEBUG Login - Coinciden MD5: NO
+[02-Oct-2025 16:04:59 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 16:04:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 16:05:16 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:05:16 UTC] DEBUG Login - Login BD: sergio
+[02-Oct-2025 16:05:16 UTC] DEBUG Login - Login enviado: sergio
+[02-Oct-2025 16:05:16 UTC] DEBUG Login - Contraseña BD: b8edd54d3a1d0c046a61491b8c9dd91a
+[02-Oct-2025 16:05:16 UTC] DEBUG Login - Contraseña enviada: AGENCIA1234
+[02-Oct-2025 16:05:16 UTC] DEBUG Login - Contraseña MD5: b457204ddb0a5879e160cfa1a4cdcb6b
+[02-Oct-2025 16:05:16 UTC] DEBUG Login - Coinciden MD5: NO
+[02-Oct-2025 16:05:16 UTC] DEBUG Login - id_perfil: 3 (tipo: integer)
+[02-Oct-2025 16:05:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 16:05:25 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:05:25 UTC] DEBUG Login - Login BD: sergio
+[02-Oct-2025 16:05:25 UTC] DEBUG Login - Login enviado: sergio
+[02-Oct-2025 16:05:25 UTC] DEBUG Login - Contraseña BD: b8edd54d3a1d0c046a61491b8c9dd91a
+[02-Oct-2025 16:05:25 UTC] DEBUG Login - Contraseña enviada: agencia1234
+[02-Oct-2025 16:05:25 UTC] DEBUG Login - Contraseña MD5: b8edd54d3a1d0c046a61491b8c9dd91a
+[02-Oct-2025 16:05:25 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 16:05:25 UTC] DEBUG Login - id_perfil: 3 (tipo: integer)
+[02-Oct-2025 16:05:25 UTC] DEBUG Login - Rol asignado: agencia
+[02-Oct-2025 16:05:28 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:28 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:05:28 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:28 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:28 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:05:28 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:29 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:29 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:05:29 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:29 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:29 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:05:29 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:30 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:30 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:05:30 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:32 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:05:32 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:05:32 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:06:11 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:06:11 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 16:06:11 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 16:06:11 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:06:11 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 16:06:11 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:06:11 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 16:06:11 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 16:06:11 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 16:06:11 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:06:11 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:06:11 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:06:12 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:06:12 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:06:12 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:06:12 UTC] DEBUG Carreras - Filtros recibidos: {"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:06:12 UTC] DEBUG Carreras - WHERE SQL: WHERE STR_TO_DATE(c.fecha, '%d/%m/%Y') >= STR_TO_DATE(:fecha_desde, '%Y-%m-%d') AND STR_TO_DATE(c.fecha, '%d/%m/%Y') <= STR_TO_DATE(:fecha_hasta, '%Y-%m-%d')
+[02-Oct-2025 16:06:12 UTC] DEBUG Carreras - Parámetros: {":fecha_desde":"2025-09-02",":fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:06:13 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:06:13 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:06:13 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:06:13 UTC] Acceso a reporte: usuario=1, reporte=lista_tickets, filtros={"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:07:10 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:07:10 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:07:10 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:07:10 UTC] Acceso a reporte: usuario=1, reporte=informe-por-agencia, filtros={"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:10:15 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:10:15 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:10:15 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:10:15 UTC] Acceso a reporte: usuario=1, reporte=informe-por-agencia, filtros={"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:12:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 16:12:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 16:18:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 16:21:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 16:21:33 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:21:33 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 16:21:33 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 16:21:33 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:21:33 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 16:21:33 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:21:33 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 16:21:33 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 16:21:33 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 16:21:33 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:21:33 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:21:33 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:24:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 16:24:19 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:24:19 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 16:24:19 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 16:24:19 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:24:19 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 16:24:19 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:24:19 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 16:24:19 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 16:24:19 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 16:24:19 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:24:19 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:24:19 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:28:57 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:28:57 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 16:28:57 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 16:28:57 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:28:57 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 16:28:57 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:28:57 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 16:28:57 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 16:28:57 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 16:28:58 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:28:58 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:28:58 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:29:01 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:29:01 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 16:29:01 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 16:29:01 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:29:01 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 16:29:01 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:29:01 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 16:29:01 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 16:29:01 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 16:29:01 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:29:01 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:29:01 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:04 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:41:04 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 16:41:04 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 16:41:04 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:41:04 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 16:41:04 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:41:04 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 16:41:04 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 16:41:04 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 16:41:05 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:05 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:41:05 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:07 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:07 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:41:07 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:08 UTC] Acceso a reporte: usuario=1, reporte=informe_parte_venta, filtros={"fecha_desde":"2025-09-02","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:41:16 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:16 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:41:16 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '31/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 31/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '06/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 06/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '05/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 05/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '04/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 04/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-15' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-15 -> 15/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-14' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-14 -> 14/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-11' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-11 -> 11/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-10' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-10 -> 10/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-08' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-08 -> 08/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[02-Oct-2025 16:41:16 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[02-Oct-2025 16:41:16 UTC] Acceso a reporte: usuario=1, reporte=informe_parte_venta, filtros={"fecha_desde":"2025-07-01","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:41:24 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:24 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:41:24 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '31/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 31/07/2025
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '06/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 06/07/2025
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '05/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 05/07/2025
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '04/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 04/07/2025
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '02/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 02/07/2025
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Input: '01/07/2025' (tipo: string)
+[02-Oct-2025 16:41:24 UTC] DEBUG formatearFecha - Ya en formato correcto: 01/07/2025
+[02-Oct-2025 16:41:24 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:24 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:41:24 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:24 UTC] DEBUG Carreras - Filtros recibidos: {"fecha_desde":"2025-07-01","fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:41:24 UTC] DEBUG Carreras - WHERE SQL: WHERE STR_TO_DATE(c.fecha, '%d/%m/%Y') >= STR_TO_DATE(:fecha_desde, '%Y-%m-%d') AND STR_TO_DATE(c.fecha, '%d/%m/%Y') <= STR_TO_DATE(:fecha_hasta, '%Y-%m-%d')
+[02-Oct-2025 16:41:24 UTC] DEBUG Carreras - Parámetros: {":fecha_desde":"2025-07-01",":fecha_hasta":"2025-10-02"}
+[02-Oct-2025 16:41:25 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:25 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:41:25 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-29' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-29 -> 29/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-17' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-17 -> 17/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-15' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-15 -> 15/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-14' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-14 -> 14/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-11' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-11 -> 11/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-10' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-10 -> 10/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-08' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-08 -> 08/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-04' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-04 -> 04/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-02' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-02 -> 02/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Input: '2025-07-01' (tipo: string)
+[02-Oct-2025 16:41:25 UTC] DEBUG formatearFecha - Formato 'Y-m-d' funcionó: 2025-07-01 -> 01/07/2025
+[02-Oct-2025 16:41:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 16:41:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method TurfReports\Controllers\AuthController::verify() in /var/www/html/Routes/api.php:119
+Stack trace:
+#0 {main}
+  thrown in /var/www/html/Routes/api.php on line 119
+[02-Oct-2025 16:42:04 UTC] DEBUG Login - Usuario encontrado: SÍ
+[02-Oct-2025 16:42:04 UTC] DEBUG Login - Login BD: carreras2024
+[02-Oct-2025 16:42:04 UTC] DEBUG Login - Login enviado: carreras2024
+[02-Oct-2025 16:42:04 UTC] DEBUG Login - Contraseña BD: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:42:04 UTC] DEBUG Login - Contraseña enviada: admin123
+[02-Oct-2025 16:42:04 UTC] DEBUG Login - Contraseña MD5: 0192023a7bbd73250516f069df18b500
+[02-Oct-2025 16:42:04 UTC] DEBUG Login - Coinciden MD5: SÍ
+[02-Oct-2025 16:42:04 UTC] DEBUG Login - id_perfil: 1 (tipo: integer)
+[02-Oct-2025 16:42:04 UTC] DEBUG Login - Rol asignado: admin
+[02-Oct-2025 16:42:04 UTC] ExportService: Creando directorio /var/www/html/Services/../../storage/exports/
+[02-Oct-2025 16:42:04 UTC] PHP Warning:  mkdir(): Permission denied in /var/www/html/Services/ExportService.php on line 24
+[02-Oct-2025 16:42:04 UTC] ExportService: ERROR al crear directorio /var/www/html/Services/../../storage/exports/
