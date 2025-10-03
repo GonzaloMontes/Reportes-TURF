@@ -57,6 +57,9 @@ export const useReportesStore = defineStore('reportes', () => {
       if (filtros.value.fechaDesde) filtrosFinales.fecha_desde = filtros.value.fechaDesde
       if (filtros.value.fechaHasta) filtrosFinales.fecha_hasta = filtros.value.fechaHasta
       if (filtros.value.agenciaId && filtros.value.agenciaId !== '0') filtrosFinales.agencia_id = filtros.value.agenciaId
+      // Filtros específicos de Carreras (backend espera estos nombres)
+      if (filtros.value.hipodromoId) filtrosFinales.hipodromo_id = filtros.value.hipodromoId
+      if (filtros.value.numeroCarrera) filtrosFinales.numero_carrera = filtros.value.numeroCarrera
       
       // Agregar filtros personalizados
       Object.assign(filtrosFinales, filtrosPersonalizados)

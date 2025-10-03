@@ -191,7 +191,7 @@
           <!-- Filtros -->
           <div class="bg-white rounded-lg shadow mb-6 p-4">
             <h3 class="text-lg font-medium text-gray-900 mb-4">Filtros</h3>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Fecha Desde</label>
                 <input
@@ -229,6 +229,32 @@
                   placeholder="Nombre o apellido..."
                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+              </div>
+              <!-- Filtro de Hipódromo para reporte Carreras -->
+              <div v-if="reportesStore.reporteActual === 'carreras'">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Hipódromo</label>
+                <select
+                  v-model="reportesStore.filtros.hipodromoId"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Todos los hipódromos</option>
+                  <option v-for="hipodromo in hipodromos" :key="hipodromo.id_hipodromo" :value="hipodromo.id_hipodromo">
+                    {{ hipodromo.nombre_hipodromo }}
+                  </option>
+                </select>
+              </div>
+              <!-- Filtro de Número de Carrera para reporte Carreras -->
+              <div v-if="reportesStore.reporteActual === 'carreras'">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Número de Carrera</label>
+                <select
+                  v-model="reportesStore.filtros.numeroCarrera"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Todas las carreras</option>
+                  <option v-for="carrera in numerosCarreras" :key="carrera.numero_carrera" :value="carrera.numero_carrera">
+                    Carrera {{ carrera.numero_carrera }}
+                  </option>
+                </select>
               </div>
               <div class="flex items-end space-x-2">
                 <button
@@ -635,6 +661,8 @@ const reportesStore = useReportesStore()
 const menuVisible = ref(false)
 const menuInformeAbierto = ref(false)
 const agencias = ref([])
+const hipodromos = ref([])
+const numerosCarreras = ref([])
 const usuariosExpandidos = ref(new Set())
 const detallesUsuarios = ref({})
 
@@ -650,6 +678,22 @@ onMounted(async () => {
     } catch (error) {
       console.error('Error cargando agencias:', error)
     }
+  }
+
+  // Cargar hipódromos para filtros
+  try {
+    const respuesta = await apiClient.get('/reports/hipodromos')
+    hipodromos.value = respuesta.data || respuesta
+  } catch (error) {
+    console.error('Error cargando hipódromos:', error)
+  }
+
+  // Cargar números de carreras disponibles
+  try {
+    const respuesta = await apiClient.get('/reports/numeros-carreras')
+    numerosCarreras.value = respuesta.data || respuesta
+  } catch (error) {
+    console.error('Error cargando números de carreras:', error)
   }
 
   // Abrir menú "Informe" si el reporte actual es "informe-parte-venta"
