@@ -1,32 +1,27 @@
 <template>
-  <!-- Fondo con efecto de césped difuminado -->
   <div class="min-h-screen flex items-center justify-center relative overflow-hidden bg-login">
-    <!-- Capa de blur simulando pista -->
-    <div class="absolute inset-0 blur-layer"></div>
     
-    <!-- Overlay suave para contraste -->
-    <div class="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/10"></div>
-    
-    <!-- Contenedor del login -->
-    <div class="relative z-10 w-full max-w-md px-6">
-      <!-- Logo TURF -->
-      <div class="flex justify-center mb-8">
+    <div class="relative z-10 w-full max-w-md p-8 md:p-10 rounded-2xl"> 
+      
+      <div class="flex justify-center mb-6">
         <img 
           src="/logo.png" 
           alt="Turfbet Logo" 
-          class="h-32 w-auto drop-shadow-lg"
+          class="h-32 w-auto drop-shadow-2xl" 
           @error="handleLogoError"
         />
       </div>
       
-      <!-- Título -->
-      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12 drop-shadow-md">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-1">
         Sistema de Reportes TURF
       </h1>
       
-      <!-- Formulario -->
+      <p class="text-center text-gray-700 text-base mb-8 font-normal">
+        Inicia sesión para acceder a los reportes
+      </p>
+      
       <form @submit.prevent="manejarLogin" class="space-y-4">
-        <!-- Mensaje de error -->
+        
         <div 
           v-if="authStore.error" 
           class="bg-red-50/90 backdrop-blur-sm border border-red-400 text-red-800 px-4 py-3 rounded-xl shadow-lg"
@@ -35,36 +30,33 @@
           {{ authStore.error }}
         </div>
 
-        <!-- Input Usuario -->
         <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <i class="fas fa-user text-gray-500 text-lg"></i>
+          <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+            <i class="fas fa-user text-gray-500 text-xl"></i> 
           </div>
           <input
             v-model="credenciales.usuario"
             type="text"
             required
-            placeholder="carreras2024"
-            class="w-full pl-12 pr-4 py-4 bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+            placeholder="Usuario"
+            class="w-full pl-14 pr-4 py-4 bg-white/95 backdrop-blur-sm border-2 border-gray-300 rounded-xl shadow-md text-gray-900 text-base placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
           />
         </div>
 
-        <!-- Input Contraseña -->
         <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <i class="fas fa-lock text-gray-500 text-lg"></i>
+          <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+            <i class="fas fa-lock text-gray-500 text-xl"></i>
           </div>
           <input
             v-model="credenciales.contrasena"
             type="password"
             required
             placeholder="••••••"
-            class="w-full pl-12 pr-4 py-4 bg-white/95 backdrop-blur-sm border-0 rounded-xl shadow-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+            class="w-full pl-14 pr-4 py-4 bg-white/95 backdrop-blur-sm border-2 border-gray-300 rounded-xl shadow-md text-gray-900 text-base placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
           />
         </div>
 
-        <!-- Checkbox Recordar sesión -->
-        <div class="flex items-center pt-2">
+        <div class="flex items-center pt-2 pb-2">
           <input
             id="recordar"
             v-model="credenciales.recordar"
@@ -73,17 +65,16 @@
           />
           <label 
             for="recordar" 
-            class="ml-3 text-gray-900 font-medium cursor-pointer select-none"
+            class="ml-3 text-gray-800 font-normal cursor-pointer select-none"
           >
             Recordar sesión
           </label>
         </div>
 
-        <!-- Botón Iniciar Sesión -->
         <button
           type="submit"
           :disabled="authStore.cargando"
-          class="w-full py-4 mt-6 bg-gradient-to-r from-[#4169e1] to-[#3a5fcd] text-white text-lg font-semibold rounded-xl shadow-2xl hover:shadow-blue-500/50 hover:from-[#3a5fcd] hover:to-[#2e4db8] hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          class="w-full py-4 mt-4 bg-gradient-to-r from-[#5e72e4] to-[#4c63d2] text-white text-lg font-semibold rounded-xl shadow-xl hover:shadow-blue-500/60 hover:from-[#4c63d2] hover:to-[#3e53c0] hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <i v-if="authStore.cargando" class="fas fa-spinner fa-spin mr-2"></i>
           {{ authStore.cargando ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
@@ -95,7 +86,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useAuthStore } from '../stores/auth'
+// Se asume que la ruta es correcta, sino usar 'api/stores/auth' o similar.
+import { useAuthStore } from '../stores/auth' 
 
 // Store de autenticación
 const authStore = useAuthStore()
@@ -131,32 +123,29 @@ function handleLogoError(event) {
 </script>
 
 <style scoped>
-/* Fondo verde césped con efecto blur - replica la imagen */
+/* Fondo con imagen difuminada */
 .bg-login {
-  background: linear-gradient(
-    to bottom,
-    #d4d4d4 0%,
-    #c8d2b4 15%,
-    #b4c878 35%,
-    #9cb860 55%,
-    #8caa5a 75%,
-    #7a9850 100%
-  );
   position: relative;
 }
 
-/* Capa de desenfoque para simular profundidad de campo */
-.blur-layer {
-  background: 
-    radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
-    radial-gradient(ellipse at 20% 60%, rgba(180, 200, 120, 0.3) 0%, transparent 40%),
-    radial-gradient(ellipse at 80% 70%, rgba(140, 170, 90, 0.2) 0%, transparent 45%);
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 0;
+/* Aplica la imagen de fondo con blur */
+.bg-login::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Usar la ruta correcta para la imagen de fondo (asumo /fondo.png o /login-bg.jpg) */
+  background-image: url('/fondo.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(5px); /* Se ajusta el blur a 5px para que sea más sutil pero visible */
+  z-index: -1;
 }
 
-/* Animación del spinner */
+/* Animación del spinner (se mantiene para consistencia) */
 @keyframes spin {
   from {
     transform: rotate(0deg);
