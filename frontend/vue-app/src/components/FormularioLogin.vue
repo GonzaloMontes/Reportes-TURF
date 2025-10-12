@@ -13,9 +13,11 @@
         />
       </div>
       
+      <!-- Contenedor visual: agrupa título + formulario -->
+      <div class="bg-slate-200/90 backdrop-blur-sm ring-1 ring-slate-300 rounded-2xl p-6 shadow-xl space-y-4">
       <!-- Título -->
       <h1 class="text-3xl md:text-4xl font-bold text-[#1e3a5f] text-center mb-2">
-        Sistema de Reportes TURF
+        Reportes TURF
       </h1>
       
       <!-- Subtítulo -->
@@ -82,15 +84,17 @@
         <button
           type="submit"
           :disabled="authStore.cargando"
-          class="w-full py-4 mt-6 bg-gradient-to-r from-[#4169e1] to-[#3a5fcd] text-white text-lg font-semibold rounded-xl shadow-2xl hover:shadow-blue-500/50 hover:from-[#3a5fcd] hover:to-[#2e4db8] hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          class="w-full py-4 mt-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-lg font-semibold rounded-xl shadow-2xl hover:shadow-blue-500/50 hover:from-blue-500 hover:to-blue-400 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <i v-if="authStore.cargando" class="fas fa-spinner fa-spin mr-2"></i>
           {{ authStore.cargando ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
         </button>
       </form>
+      </div>
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref } from 'vue'

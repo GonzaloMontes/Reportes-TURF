@@ -94,6 +94,7 @@ export const reportesApi = {
   obtenerAgencias: () => apiClient.get('/reports/agencies'),
   obtenerHipodromos: () => apiClient.get('/reports/hipodromos'),
   obtenerNumerosCarreras: () => apiClient.get('/reports/numeros-carreras'),
+  obtenerTerminales: (params = {}) => apiClient.get('/reports/terminales', { params }),
 
   // Endpoints de reportes (Admin)
   obtenerVentasTickets: (filtros) => apiClient.get('/reports/lista-tickets', { params: filtros }),

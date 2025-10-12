@@ -130,6 +130,9 @@ try {
     } elseif ($route === 'reports/numeros-carreras' && $method === 'GET') {
         (new \TurfReports\Core\Auth())->requireAuth();
         (new ReportController())->getNumerosCarreras();
+    } elseif ($route === 'reports/terminales' && $method === 'GET') {
+        (new \TurfReports\Core\Auth())->requireAuth();
+        (new ReportController())->getTerminales();
     } elseif ($route === 'reports/lista-tickets' && $method === 'GET') {
         (new \TurfReports\Core\Auth())->requireAuth();
         (new ReportController())->listaTickets();

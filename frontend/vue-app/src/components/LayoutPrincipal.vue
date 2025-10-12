@@ -110,7 +110,7 @@
                   @click="toggleInformeMenu"
                   :class="[
                     'w-full p-4 rounded-lg transition-colors text-left flex items-center justify-between',
-                    menuInformeAbierto || reportesStore.reporteActual === 'informe-parte-venta'
+                    menuInformeAbierto || ['informe-parte-venta','informe-caja'].includes(reportesStore.reporteActual)
                       ? 'bg-blue-50 text-blue-700'
                       : 'hover:bg-gray-50'
                   ]"
@@ -135,6 +135,18 @@
                   >
                     <i class="fas fa-chart-pie text-lg mr-3"></i>
                     <span>Parte de Venta</span>
+                  </button>
+                  <button
+                    @click="seleccionarReporte('informe-caja', 'agencia')"
+                    :class="[
+                      'w-full p-3 mt-2 rounded-lg border transition-colors text-left flex items-center',
+                      reportesStore.reporteActual === 'informe-caja'
+                        ? 'border-blue-500 bg-white text-blue-700 font-medium'
+                        : 'border-gray-200 bg-white hover:border-blue-300'
+                    ]"
+                  >
+                    <i class="fas fa-cash-register text-lg mr-3"></i>
+                    <span>Informe de Caja</span>
                   </button>
                 </div>
               </div>
@@ -175,7 +187,7 @@
       ></div>
 
       <!-- Contenido principal -->
-      <main class="flex-1 p-6">
+      <main class="flex-1 p-6 overflow-x-hidden">
         <!-- Dashboard -->
         <div v-if="reportesStore.reporteActual === 'dashboard'">
           <h2 class="text-2xl font-bold text-gray-900 mb-6">Dashboard</h2>
@@ -187,7 +199,9 @@
         </div>
 
         <!-- Área de reportes -->
-        <div v-else>
+        <!-- Contenedor a ancho completo del área de contenido (sin limitar con max-w) para ocupar todo el espacio disponible
+             manteniendo paddings laterales. Esto evita espacios vacíos a los costados y respeta el sidebar. -->
+        <div v-else class="w-full px-4 md:px-6">
           <!-- Filtros -->
           <div class="bg-white rounded-lg shadow mb-6 p-4">
             <h3 class="text-lg font-medium text-gray-900 mb-4">Filtros</h3>
@@ -217,6 +231,32 @@
                   <option value="">Todas las agencias</option>
                   <option v-for="agencia in agencias" :key="agencia.id_agencia" :value="agencia.id_agencia">
                     {{ agencia.nombre_agencia }}
+                  </option>
+                </select>
+              </div>
+              <!-- Filtro Terminal para Tickets Anulados (Admin) -->
+              <div v-if="authStore.esAdmin && reportesStore.reporteActual === 'tickets-anulados'">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Terminal</label>
+                <select
+                  v-model="reportesStore.filtros.terminalId"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Todas las terminales</option>
+                  <option v-for="t in terminales" :key="t.id_usuario" :value="t.id_usuario">
+                    {{ t.nombre_usuario }}
+                  </option>
+                </select>
+              </div>
+              <!-- Filtro Terminal para Informe de Caja (Admin) -->
+              <div v-if="authStore.esAdmin && reportesStore.reporteActual === 'informe-caja'">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Terminal</label>
+                <select
+                  v-model="reportesStore.filtros.terminalId"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Selecciona una terminal</option>
+                  <option v-for="t in terminales" :key="t.id_usuario" :value="t.id_usuario">
+                    {{ t.nombre_usuario }}
                   </option>
                 </select>
               </div>
@@ -269,8 +309,8 @@
             </div>
           </div>
 
-          <!-- Encabezado del reporte con origen (Movido aquí) -->
-          <div v-if="reportesStore.reporteActual && reportesStore.reporteActual !== 'dashboard'" 
+          <!-- Encabezado del reporte con origen (oculto en Informe de Caja) -->
+          <div v-if="reportesStore.reporteActual && reportesStore.reporteActual !== 'dashboard' && reportesStore.reporteActual !== 'informe-caja'" 
                class="bg-white rounded-lg shadow-md p-6 mb-6">
             <div class="flex items-center justify-between">
               <div class="flex items-center space-x-4">
@@ -478,9 +518,10 @@
             </div>
           </div>
 
-          <!-- KPIs Cards normales para otros reportes -->
+          <!-- KPIs Cards normales para otros reportes (oculto en Informe de Caja) -->
           <div v-else-if="reportesStore.kpis && Object.keys(reportesStore.kpis).length > 0 && 
                           reportesStore.reporteActual !== 'informe-agencias' && 
+                          reportesStore.reporteActual !== 'informe-caja' &&
                           !(reportesStore.reporteActual === 'ventas-diarias' && !authStore.esAdmin) && 
                           !(reportesStore.origenActual === 'appweb' && ['por-usuario', 'economico', 'dinero-remanente', 'apuestas'].includes(reportesStore.reporteActual))" 
                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -499,6 +540,15 @@
           <TablaInformeParteVenta
             v-if="reportesStore.reporteActual === 'informe-parte-venta'"
             :kpis="reportesStore.kpis"
+            :cargando="reportesStore.cargando"
+            :error="reportesStore.error"
+          />
+
+          <!-- Tabla especial para Informe de Caja -->
+          <TablaInformeCaja
+            v-if="reportesStore.reporteActual === 'informe-caja'"
+            :kpis="reportesStore.kpis"
+            :datos="reportesStore.datosReporte"
             :cargando="reportesStore.cargando"
             :error="reportesStore.error"
           />
@@ -624,9 +674,9 @@
             </div>
           </div>
 
-          <!-- Tabla de reportes normal para otros casos -->
+          <!-- Tabla de reportes normal para otros casos (oculto en Informe de Caja) -->
           <TablaReportes 
-            v-else-if="reportesStore.datosReporte.length > 0"
+            v-else-if="reportesStore.datosReporte.length > 0 && reportesStore.reporteActual !== 'informe-caja'"
             :titulo="tituloReporteActual"
             :datos="reportesStore.datosReporte"
             :columnas="[]"
@@ -652,6 +702,7 @@ import { apiClient, reportesApi } from '../services/api'
 import KPICard from './KPICard.vue'
 import TablaReportes from './TablaReportes.vue'
 import TablaInformeParteVenta from './TablaInformeParteVenta.vue'
+import TablaInformeCaja from './TablaInformeCaja.vue'
 
 // Stores
 const authStore = useAuthStore()
@@ -663,6 +714,7 @@ const menuInformeAbierto = ref(false)
 const agencias = ref([])
 const hipodromos = ref([])
 const numerosCarreras = ref([])
+const terminales = ref([])
 const usuariosExpandidos = ref(new Set())
 const detallesUsuarios = ref({})
 
@@ -696,8 +748,16 @@ onMounted(async () => {
     console.error('Error cargando números de carreras:', error)
   }
 
+  // Cargar terminales para filtro de Tickets Anulados (solo admin)
+  try {
+    const respuesta = await apiClient.get('/reports/terminales')
+    terminales.value = respuesta.data || respuesta
+  } catch (error) {
+    console.error('Error cargando terminales:', error)
+  }
+
   // Abrir menú "Informe" si el reporte actual es "informe-parte-venta"
-  if (reportesStore.reporteActual === 'informe-parte-venta') {
+  if (['informe-parte-venta','informe-caja'].includes(reportesStore.reporteActual)) {
     menuInformeAbierto.value = true
   }
 })
@@ -714,10 +774,10 @@ const reportesAgencia = computed(() => {
     ]
   } else {
     return [
-      { id: 'ventas-diarias', nombre: 'Ventas Diarias', icono: 'fas fa-chart-line' },
+      { id: 'ventas-diarias', nombre: 'Ventas Diarias', icono: 'fas fa-calendar-day' },
       { id: 'tickets-devoluciones', nombre: 'Tickets con Devolución', icono: 'fas fa-undo' },
-      { id: 'sports-carreras', nombre: 'Sports y Carreras', icono: 'fas fa-horse-head' },
-      { id: 'tickets-anulados', nombre: 'Tickets Anulados', icono: 'fas fa-ban' }
+      { id: 'sports-carreras', nombre: 'Sports y Carreras', icono: 'fas fa-flag-checkered' },
+      { id: 'tickets-anulados-agencia', nombre: 'Tickets Anulados', icono: 'fas fa-times-circle' }
     ]
   }
 })
@@ -768,7 +828,7 @@ const tituloReporteActual = computed(() => infoReporteActual.value.nombre)
 
 // Mostrar filtro de agencia según el reporte
 const mostrarFiltroAgencia = computed(() => {
-  const reportesConFiltroAgencia = ['ventas-tickets', 'tickets-anulados']
+  const reportesConFiltroAgencia = ['ventas-tickets', 'tickets-anulados', 'informe-caja']
   return reportesConFiltroAgencia.includes(reportesStore.reporteActual)
 })
 
@@ -824,7 +884,8 @@ async function seleccionarMenu(idMenu) {
 async function seleccionarReporte(idReporte, origen) {
   // Ocultar menú en móvil después de selección
   if (window.innerWidth < 768) {
-    menuVisible.value = false
+    // Mantener menú visible específicamente para Informe de Caja
+    menuVisible.value = idReporte === 'informe-caja' ? true : false
   }
   
   // Establecer el reporte y origen

@@ -68,6 +68,18 @@ class ReportController
     }
 
     /**
+     * Obtiene la lista de terminales (usuarios con id_perfil = 2) para filtros.
+     * Puede opcionalmente filtrar por agencia si se pasa agencia_id en la query.
+     */
+    public function getTerminales()
+    {
+        $this->auth->requireAuth();
+        $agenciaId = isset($_GET['agencia_id']) ? (int)$_GET['agencia_id'] : null;
+        $data = $this->reportService->getTerminales($agenciaId);
+        $this->respuestaJson($data);
+    }
+
+    /**
      * Endpoint para el nuevo reporte de listado de tickets.
      * Utiliza la consulta validada de `direct_sql_test.php`.
      */
@@ -115,6 +127,9 @@ class ReportController
             case 'lista-tickets':
                 $usuarioId = $this->obtenerAgenciaId();
                 $data = $this->reportService->getListaTickets($filtros, $usuarioId);
+                break;
+            case 'informe-caja':
+                $data = $this->reportService->getInformeCajaFromExisting($filtros);
                 break;
             default:
                 http_response_code(404);
@@ -356,6 +371,7 @@ class ReportController
         if (isset($_GET['hipodromo_id'])) $filtros['hipodromo_id'] = (int)$_GET['hipodromo_id'];
         if (isset($_GET['numero_carrera'])) $filtros['numero_carrera'] = (int)$_GET['numero_carrera'];
         if (isset($_GET['carrera_id'])) $filtros['carrera_id'] = (int)$_GET['carrera_id'];
+        if (isset($_GET['terminal_id'])) $filtros['terminal_id'] = (int)$_GET['terminal_id'];
         if (isset($_GET['page'])) {
             $page = max(1, (int)$_GET['page']);
             $limit = (int)($_GET['limit'] ?? 100);

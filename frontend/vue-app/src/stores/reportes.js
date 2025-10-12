@@ -1,6 +1,22 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { reportesApi } from '../services/api'
+import { reportesGateway } from '../services/reportesApi'
+import { useAuthStore } from './auth'
+
+// Enumeración de tipos de reporte para evitar strings "mágicos"
+export const TIPOS_REPORTE = {
+  VENTAS_TICKETS: 'ventas-tickets',
+  INFORME_AGENCIAS: 'informe-agencias',
+  INFORME_CAJA: 'informe-caja',
+  CABALLOS_RETIRADOS: 'caballos-retirados',
+  CARRERAS: 'carreras',
+  TICKETS_ANULADOS: 'tickets-anulados',
+  INFORME_PARTE_VENTA: 'informe-parte-venta',
+  // Agencia
+  VENTAS_DIARIAS: 'ventas-diarias',
+  TICKETS_DEVOLUCIONES: 'tickets-devoluciones',
+  SPORTS_CARRERAS: 'sports-carreras',
+}
 
 /**
  * Store de reportes - Maneja el estado de los reportes y datos
@@ -21,6 +37,7 @@ export const useReportesStore = defineStore('reportes', () => {
     agenciaId: '',
     hipodromoId: '',
     numeroCarrera: '',
+    terminalId: '',
     buscarUsuario: ''
   })
 
@@ -43,6 +60,16 @@ export const useReportesStore = defineStore('reportes', () => {
   }
 
   /**
+   * Establecer fecha desde y hasta con la fecha de hoy (YYYY-MM-DD)
+   * Útil para reportes que deben iniciar con el día actual.
+   */
+  function establecerFechasHoy() {
+    const hoy = new Date().toISOString().split('T')[0]
+    filtros.value.fechaDesde = hoy
+    filtros.value.fechaHasta = hoy
+  }
+
+  /**
    * Cargar datos del reporte actual según el tipo
    */
   async function cargarReporte(tipoReporte, filtrosPersonalizados = {}) {
@@ -51,7 +78,7 @@ export const useReportesStore = defineStore('reportes', () => {
       error.value = null
       reporteActual.value = tipoReporte
 
-      // Combinar filtros usando la misma lógica que app.js
+      // Combinar filtros en el formato que espera el backend
       const filtrosFinales = {}
       
       if (filtros.value.fechaDesde) filtrosFinales.fecha_desde = filtros.value.fechaDesde
@@ -60,103 +87,39 @@ export const useReportesStore = defineStore('reportes', () => {
       // Filtros específicos de Carreras (backend espera estos nombres)
       if (filtros.value.hipodromoId) filtrosFinales.hipodromo_id = filtros.value.hipodromoId
       if (filtros.value.numeroCarrera) filtrosFinales.numero_carrera = filtros.value.numeroCarrera
+      // Filtro específico de Tickets Anulados (terminal)
+      if (filtros.value.terminalId) filtrosFinales.terminal_id = filtros.value.terminalId
       
+      // Enforzar alcance por agencia para usuarios de agencia (sobrescribe cualquier valor)
+      try {
+        const auth = useAuthStore()
+        if (auth.esAgencia && auth.idAgencia) filtrosFinales.agencia_id = auth.idAgencia
+      } catch (_) {}
+
       // Agregar filtros personalizados
       Object.assign(filtrosFinales, filtrosPersonalizados)
       
       console.log('DEBUG Vue - Filtros enviados:', filtrosFinales)
       console.log('DEBUG Vue - Tipo reporte:', tipoReporte)
+      // Los reportes de AppWeb se manejan directamente desde LayoutPrincipal
+      const tiposAppWeb = ['por-usuario','economico','apuestas','dinero-remanente','rendimiento-apuesta-carrera']
+      if (tiposAppWeb.includes(tipoReporte)) return
 
-      let respuesta = null
+      // Nuevo flujo: usar gateway normalizado
+      const respuesta = await reportesGateway.obtener(tipoReporte, filtrosFinales)
 
-      // Mapear tipo de reporte a endpoint correspondiente
-      switch (tipoReporte) {
-        case 'ventas-tickets':
-          respuesta = await reportesApi.obtenerVentasTickets(filtrosFinales)
-          break
-        case 'informe-agencias':
-          respuesta = await reportesApi.obtenerInformeAgencias(filtrosFinales)
-          break
-        case 'caballos-retirados':
-          respuesta = await reportesApi.obtenerCaballosRetirados(filtrosFinales)
-          break
-        case 'carreras':
-          respuesta = await reportesApi.obtenerCarreras(filtrosFinales)
-          break
-        case 'tickets-anulados':
-          respuesta = await reportesApi.obtenerTicketsAnulados(filtrosFinales)
-          break
-        case 'informe-parte-venta':
-          respuesta = await reportesApi.obtenerInformeParteVenta(filtrosFinales)
-          break
-        case 'ventas-diarias':
-          respuesta = await reportesApi.obtenerVentasDiarias(filtrosFinales)
-          break
-        case 'tickets-devoluciones':
-          respuesta = await reportesApi.obtenerTicketsDevoluciones(filtrosFinales)
-          break
-        case 'sports-carreras':
-          respuesta = await reportesApi.obtenerSportsCarreras(filtrosFinales)
-          break
-        case 'por-usuario':
-        case 'economico':
-        case 'apuestas':
-        case 'dinero-remanente':
-        case 'rendimiento-apuesta-carrera':
-          // Los reportes de AppWeb se manejan directamente en LayoutPrincipal
-          return
-        default:
-          throw new Error(`Tipo de reporte no reconocido: ${tipoReporte}`)
-      }
-
-      // Procesar respuesta según estructura
-      if (respuesta) {
-        console.log('DEBUG Vue - Respuesta completa:', respuesta)
-        
-        // Procesar según tipo de reporte
-        if (tipoReporte === 'ventas-tickets') {
-          datosReporte.value = respuesta.data || []
-          kpis.value = {
-            total_vendido: respuesta.total_vendido,
-            total_ganadores: respuesta.total_ganadores,
-            total_pagados: respuesta.total_pagados,
-            total_devoluciones: respuesta.total_devoluciones,
-            ganancia: respuesta.ganancia
-          }
-        } else if (tipoReporte === 'informe-agencias') {
-          // Para informe-agencias, los datos pueden venir directamente como array
-          datosReporte.value = Array.isArray(respuesta) ? respuesta : (respuesta.data || respuesta.agencias || [])
-          kpis.value = respuesta.totales || {}
-        } else if (tipoReporte === 'caballos-retirados') {
-          // Para caballos-retirados, procesar KPIs específicos usando los campos correctos del backend
-          datosReporte.value = respuesta.data || respuesta.caballos || []
-          kpis.value = {
-            total_general_devolver: respuesta.total_a_devolver || 0,
-            total_devuelto: respuesta.total_devuelto || 0,
-            total_general_apuestas: respuesta.total_general || 0
-          }
-        } else {
-          datosReporte.value = respuesta.data || respuesta.datos || []
-          kpis.value = respuesta.kpis || respuesta.summary || {}
-        }
-        
-        console.log('DEBUG Vue - Datos procesados:', { 
-          datos: datosReporte.value, 
-          kpis: kpis.value,
-          esArray: Array.isArray(respuesta)
-        })
-        
-        // Actualizar paginación si existe
-        if (respuesta.pagination) {
-          paginacion.value = {
-            paginaActual: respuesta.pagination.current_page || 1,
-            totalPaginas: respuesta.pagination.total_pages || 1,
-            totalRegistros: respuesta.pagination.total_records || 0,
-            registrosPorPagina: respuesta.pagination.per_page || 100
-          }
+      datosReporte.value = respuesta.data || []
+      kpis.value = respuesta.kpis || {}
+      if (respuesta.paginacion) {
+        const p = respuesta.paginacion
+        paginacion.value = {
+          paginaActual: p.current_page || p.paginaActual || 1,
+          totalPaginas: p.total_pages || p.totalPaginas || 1,
+          totalRegistros: p.total_records || p.totalRegistros || 0,
+          registrosPorPagina: p.per_page || p.registrosPorPagina || 100
         }
       }
-
+    
     } catch (err) {
       error.value = err.message || 'Error cargando reporte'
       console.error('Error cargando reporte:', err)
@@ -224,7 +187,8 @@ export const useReportesStore = defineStore('reportes', () => {
       fecha_hasta: filtros.value.fechaHasta,
       agencia_id: filtros.value.agenciaId,
       hipodromo_id: filtros.value.hipodromoId,
-      numero_carrera: filtros.value.numeroCarrera
+      numero_carrera: filtros.value.numeroCarrera,
+      terminal_id: filtros.value.terminalId
     }
   }
 
@@ -267,6 +231,7 @@ export const useReportesStore = defineStore('reportes', () => {
   return {
     // Estado
     reporteActual,
+    origenActual,
     datosReporte,
     kpis,
     cargando,
@@ -276,6 +241,7 @@ export const useReportesStore = defineStore('reportes', () => {
     
     // Acciones
     configurarFechasPorDefecto,
+    establecerFechasHoy,
     cargarReporte,
     aplicarFiltros,
     cambiarPagina,

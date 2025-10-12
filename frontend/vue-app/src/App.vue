@@ -4,7 +4,7 @@
     <FormularioLogin v-if="!authStore.estaAutenticado" />
     
     <!-- Mostrar aplicación principal si está autenticado -->
-    <LayoutPrincipal v-else />
+    <LayoutBase v-else />
   </div>
 </template>
 
@@ -12,7 +12,7 @@
 import { onMounted } from 'vue'
 import { useAuthStore } from './stores/auth'
 import FormularioLogin from './components/FormularioLogin.vue'
-import LayoutPrincipal from './components/LayoutPrincipal.vue'
+import LayoutBase from './layout/LayoutBase.vue'
 
 // Store de autenticación
 const authStore = useAuthStore()

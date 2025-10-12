@@ -45,6 +45,83 @@ class ReportService
     }
 
     /**
+     * Obtiene la lista de terminales (usuarios) disponibles para filtros.
+     * Se consideran terminales a los usuarios con id_perfil = 2.
+     * Opcionalmente puede filtrarse por agencia si se provee $agenciaId.
+     *
+     * @param int|null $agenciaId
+     * @return array Lista de terminales con id_usuario, nombre_usuario e id_agencia
+     */
+    public function getTerminales(int $agenciaId = null)
+    {
+        $params = [];
+        $where = 'WHERE id_perfil = 2';
+        if (!empty($agenciaId)) {
+            $where .= ' AND id_agencia = :id_agencia';
+            $params[':id_agencia'] = $agenciaId;
+        }
+
+        $query = "SELECT id_usuario, nombre_usuario, id_agencia FROM tbl_usuarios {$where} ORDER BY nombre_usuario ASC";
+        return $this->db->query($query, 'agencias', $params)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Datos detallados de ventas de tickets (misma SQL que ExportService::getVentasTicketsData),
+     * con filtros por fecha, agencia y (opcional) terminal.
+     */
+    public function getVentasTicketsData(array $filters = [], $usuarioId = null): array
+    {
+        $params = [];
+        $whereClauses = [];
+
+        if (!empty($filters['fecha_desde'])) {
+            $whereClauses[] = "STR_TO_DATE(t.fecha, '%d/%m/%Y') >= :fecha_desde";
+            $params[':fecha_desde'] = $filters['fecha_desde'];
+        }
+        if (!empty($filters['fecha_hasta'])) {
+            $whereClauses[] = "STR_TO_DATE(t.fecha, '%d/%m/%Y') <= :fecha_hasta";
+            $params[':fecha_hasta'] = $filters['fecha_hasta'];
+        }
+        if (!empty($filters['agencia_id'])) {
+            $whereClauses[] = "u.id_agencia = :agencia_id";
+            $params[':agencia_id'] = $filters['agencia_id'];
+        }
+        if (!empty($filters['terminal_id'])) {
+            $whereClauses[] = "t.id_usuario = :terminal_id";
+            $params[':terminal_id'] = (int)$filters['terminal_id'];
+        }
+
+        $whereSql = count($whereClauses) > 0 ? 'WHERE ' . implode(' AND ', $whereClauses) : '';
+
+        $query = "
+            SELECT 
+                t.nro_ticket as 'Nro Ticket',
+                t.fecha as 'Fecha',
+                t.hora as 'Hora',
+                a.nombre_agencia as 'Agencia',
+                u.nombre_usuario as 'Usuario',
+                dt.total_apostado as 'Monto Apostado',
+                CASE WHEN dt.premio = 'si' THEN dt.total_premio ELSE 0 END as 'Premio',
+                CASE WHEN t.pagado = 'si' THEN 'Pagado' ELSE 'Pendiente' END as 'Estado',
+                CASE WHEN t.anulado = 1 THEN 'Si' ELSE 'No' END as 'Anulado'
+            FROM 
+                tbl_tickets t
+            JOIN 
+                tbl_detalle_tickets dt ON t.id_ticket = dt.id_ticket
+            JOIN
+                tbl_usuarios u ON t.id_usuario = u.id_usuario
+            JOIN
+                tbl_agencias a ON u.id_agencia = a.id_agencia
+            {$whereSql}
+            ORDER BY 
+                STR_TO_DATE(t.fecha, '%d/%m/%Y') DESC, t.hora DESC
+        ";
+
+        $stmt = $this->db->query($query, 'agencias', $params);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    /**
      * Obtiene el resumen de ventas de tickets.
      *
      * @param array $filters Filtros para la consulta.
@@ -218,6 +295,12 @@ class ReportService
             $params[':fecha_hasta'] = $filters['fecha_hasta'];
         }
 
+        // Filtro por agencia (opcional)
+        if (!empty($filters['agencia_id'])) {
+            $whereClauses[] = "u.id_agencia = :agencia_id";
+            $params[':agencia_id'] = (int)$filters['agencia_id'];
+        }
+
         $whereSql = count($whereClauses) > 0 ? 'AND ' . implode(' AND ', $whereClauses) : '';
 
         // 2. CONSULTA PARA OBTENER TOTALES: REGISTROS, TOTAL A DEVOLVER Y TOTAL DEVUELTO
@@ -233,6 +316,10 @@ class ReportService
                 tbl_caballos_retirados_um_detalle crd ON cr.id_caballo_retirado_ultimo_momento = crd.id_caballo_retirado_ultimo_momento
             LEFT JOIN
                 tbl_detalle_tickets dt ON crd.id_detalle_ticket = dt.id_detalle_ticket
+            LEFT JOIN
+                tbl_tickets t ON dt.id_ticket = t.id_ticket
+            LEFT JOIN
+                tbl_usuarios u ON t.id_usuario = u.id_usuario
             WHERE 1=1
             {$whereSql}
         ";
@@ -261,6 +348,10 @@ class ReportService
                 tbl_caballos_retirados_um_detalle crd ON cr.id_caballo_retirado_ultimo_momento = crd.id_caballo_retirado_ultimo_momento
             LEFT JOIN 
                 tbl_detalle_tickets dt ON crd.id_detalle_ticket = dt.id_detalle_ticket
+            LEFT JOIN
+                tbl_tickets t ON dt.id_ticket = t.id_ticket
+            LEFT JOIN
+                tbl_usuarios u ON t.id_usuario = u.id_usuario
             WHERE 1=1
             {$whereSql}
             GROUP BY
@@ -371,6 +462,52 @@ class ReportService
                 }
             }
         }
+        unset($registro);
+
+        // 4-b. ENRIQUECER: Favorito y Borrados por carrera (batch, tolerante a ausencia de tablas)
+        try {
+            $ids = array_column($registros, 'carrera_interna_id');
+            if (!empty($ids)) {
+                $ph = implode(',', array_fill(0, count($ids), '?'));
+
+                // Borrados (retirados) por carrera
+                $sqlB = "SELECT cr.id_carrera, COUNT(cr.nro_caballo) AS borrados
+                         FROM tbl_caballos_retirados_ultimo_momento cr
+                         WHERE cr.id_carrera IN ($ph)
+                         GROUP BY cr.id_carrera";
+                $rowsB = $this->db->query($sqlB, 'agencias', $ids)->fetchAll(PDO::FETCH_ASSOC);
+                $mapB = [];
+                foreach ($rowsB as $row) {
+                    $mapB[(int)$row['id_carrera']] = (int)($row['borrados'] ?? 0);
+                }
+
+                // Favorito por carrera (si existen tablas): usar nro_caballo directo
+                $mapF = [];
+                try {
+                    $sqlF = "SELECT cf.id_carrera,
+                                     GROUP_CONCAT(cf.nro_caballo ORDER BY cf.nro_caballo SEPARATOR ' / ') AS favorito
+                              FROM tbl_caballos_favoritos cf
+                              WHERE cf.id_carrera IN ($ph)
+                              GROUP BY cf.id_carrera";
+                    $rowsF = $this->db->query($sqlF, 'agencias', $ids)->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($rowsF as $row) {
+                        $mapF[(int)$row['id_carrera']] = $row['favorito'] ?? '—';
+                    }
+                } catch (\Throwable $e) {
+                    $mapF = [];
+                }
+
+                // Inyectar datos enriquecidos en el resultado principal
+                foreach ($registros as &$r) {
+                    $cid = (int)($r['carrera_interna_id'] ?? 0);
+                    $r['favorito'] = $mapF[$cid] ?? '—';
+                    $r['borrados'] = $mapB[$cid] ?? 0;
+                }
+                unset($r);
+            }
+        } catch (\Throwable $e) {
+            error_log('WARN Carreras enrich: ' . $e->getMessage());
+        }
 
         // 5. RETORNO DE DATOS ESTRUCTURADOS
         return [
@@ -390,10 +527,113 @@ class ReportService
         
         $params = [':id_carrera' => $idCarrera];
         
-        // Consulta para obtener resultados de caballos en la carrera
+        // 1) Detalle extendido: zipear Apuestas y Posiciones 1..5 (primera fila ya contiene ambos)
+        $salida = [];
+        try {
+            // a) Apuestas habilitadas (orden según tbl_apuestas) + agregados desde tickets
+            $qApu = "
+                SELECT a.id_apuesta, a.abreviatura, a.nombre_apuesta,
+                       COALESCE(SUM(dt.cantidad_apuestas), 0) AS vales,
+                       COALESCE(MAX(dt.valor_apuesta), 0) AS div_val,
+                       COALESCE(SUM(dt.cantidad_apuestas * dt.valor_apuesta), 0) AS total
+                FROM tbl_carreras_sports cs
+                INNER JOIN tbl_apuestas a ON cs.id_apuesta = a.id_apuesta
+                LEFT JOIN tbl_tickets t ON t.id_carrera = cs.id_carrera
+                LEFT JOIN tbl_detalle_tickets dt ON dt.id_ticket = t.id_ticket AND dt.id_apuesta = a.id_apuesta
+                WHERE cs.id_carrera = :id_carrera
+                GROUP BY a.id_apuesta, a.abreviatura, a.nombre_apuesta
+                ORDER BY a.id_apuesta ASC
+            ";
+            $apuestas = $this->db->query($qApu, 'agencias', $params)->fetchAll(PDO::FETCH_ASSOC);
+            $betRows = [];
+            foreach ($apuestas as $a) {
+                $divVal = (float)($a['div_val'] ?? 0);
+                $vales  = (int)($a['vales'] ?? 0);
+                $total  = (float)($a['total'] ?? ($divVal * $vales));
+                $betRows[] = [
+                    'apuesta'   => ($a['abreviatura'] ?: ($a['nombre_apuesta'] ?: '-')),
+                    'vales'     => $vales,
+                    'div_orig'  => $divVal, // Div.Orig = valor_apuesta
+                    'div_inc'   => $divVal, // Div.Inc   = valor_apuesta
+                    'total'     => $total,
+                ];
+            }
+
+            // b) Posiciones oficiales 1..5 SOLO desde tbl_carreras_sports
+            $posRows = [];
+            $vals = [];
+            // Traer todas las filas de la carrera con su apuesta (para priorizar GA)
+            $qCs = "
+                SELECT cs.id_carrera_sport, cs.id_apuesta, a.abreviatura, a.nombre_apuesta,
+                       cs.nro_caballo_primer_lugar  AS pos1,
+                       cs.nro_caballo_segundo_lugar AS pos2,
+                       cs.nro_caballo_tercer_lugar  AS pos3,
+                       cs.nro_caballo_cuarto_lugar  AS pos4,
+                       cs.nro_caballo_quinto_lugar  AS pos5
+                FROM tbl_carreras_sports cs
+                LEFT JOIN tbl_apuestas a ON a.id_apuesta = cs.id_apuesta
+                WHERE cs.id_carrera = :id_carrera
+            ";
+            $rowsCs = $this->db->query($qCs, 'agencias', $params)->fetchAll(PDO::FETCH_ASSOC) ?: [];
+            // Ordenar filas por prioridad: GA -> GAN* -> resto; luego por id_carrera_sport asc
+            usort($rowsCs, function($x, $y){
+                $px = 2; $py = 2;
+                $ax = strtoupper(trim((string)($x['abreviatura'] ?? '')));
+                $ay = strtoupper(trim((string)($y['abreviatura'] ?? '')));
+                $nx = strtoupper(trim((string)($x['nombre_apuesta'] ?? '')));
+                $ny = strtoupper(trim((string)($y['nombre_apuesta'] ?? '')));
+                if ($ax === 'GA' || str_starts_with($nx, 'GAN')) $px = 0; elseif (str_starts_with($ax, 'G')) $px = 1;
+                if ($ay === 'GA' || str_starts_with($ny, 'GAN')) $py = 0; elseif (str_starts_with($ay, 'G')) $py = 1;
+                if ($px === $py) return ($x['id_carrera_sport'] ?? 0) <=> ($y['id_carrera_sport'] ?? 0);
+                return $px <=> $py;
+            });
+            // Completar posiciones 1..5 tomando la primera no-cero según prioridad y evitando duplicados
+            $usados = [];
+            for ($p=1; $p<=5; $p++) {
+                foreach ($rowsCs as $row) {
+                    $campo = 'pos' . $p;
+                    $cab   = (int)($row[$campo] ?? 0);
+                    if ($cab > 0 && !in_array($cab, $usados, true)) { // evitar repetidos
+                        $vals[$p] = $cab;
+                        $usados[] = $cab;
+                        break;
+                    }
+                }
+            }
+            // Construir filas de salida (solo posiciones presentes)
+            for ($i=1; $i<=5; $i++) {
+                if (!empty($vals[$i])) {
+                    $posRows[] = ['posicion' => $i, 'nro_caballo' => (int)$vals[$i]];
+                }
+            }
+
+            // c) Zipear: primera fila muestra posicion 1 y primera apuesta, y así sucesivamente
+            $len = max(count($posRows), count($betRows));
+            for ($i = 0; $i < $len; $i++) {
+                $p = $posRows[$i] ?? null;
+                $b = $betRows[$i] ?? null;
+                $salida[] = [
+                    'posicion'    => $p['posicion']    ?? null,
+                    'nro_caballo' => $p['nro_caballo'] ?? null,
+                    'apuesta'     => $b['apuesta']     ?? null,
+                    'vales'       => $b['vales']       ?? 0,
+                    'div_orig'    => $b['div_orig']    ?? 0.0,
+                    'div_inc'     => $b['div_inc']     ?? 0.0,
+                    'total'       => $b['total']       ?? 0.0,
+                ];
+            }
+
+            if (!empty($salida)) {
+                return ['resultados_caballos' => $salida];
+            }
+        } catch (\Throwable $e) {
+            // Si algo falla, continuar al fallback clásico
+        }
+
+        // 2) Fallback: consulta actual para resultados de caballos en la carrera (compatibilidad)
         $queryResultados = "
             SELECT 
-                cs.id_caballo,
+                COALESCE(cs.nro_caballo, cs.id_caballo) AS id_o_nro_caballo,
                 cs.posicion_llegada,
                 cs.sport_ganador,
                 cs.sport_segundo,
@@ -404,7 +644,7 @@ class ReportService
             FROM tbl_caballos_sports cs
             INNER JOIN tbl_carreras c ON cs.id_carrera = c.id_carrera
             INNER JOIN tbl_hipodromos h ON c.id_hipodromo = h.id_hipodromo
-            WHERE cs.id_carrera = :id_carrera
+            WHERE cs.id_carrera = :id_carrera AND cs.posicion_llegada BETWEEN 1 AND 5
             ORDER BY cs.posicion_llegada ASC
         ";
         
@@ -412,9 +652,18 @@ class ReportService
         
         error_log("DEBUG getResultadosCarrera - Resultados encontrados: " . count($resultados));
         
-        return [
-            'resultados_caballos' => $resultados
-        ];
+        // Mapear nombres esperados por el front en fallback
+        $resultados = array_map(function($r){
+            return [
+                'posicion_llegada' => $r['posicion_llegada'],
+                'id_caballo'       => $r['id_o_nro_caballo'], // se mostrará como número en el front
+                'sport_ganador'    => $r['sport_ganador'],
+                'sport_segundo'    => $r['sport_segundo'],
+                'sport_tercero'    => $r['sport_tercero'],
+            ];
+        }, $resultados);
+
+        return ['resultados_caballos' => $resultados];
     }
 
     /**
@@ -500,6 +749,12 @@ class ReportService
         if (!empty($filters['agencia_id'])) {
             $whereClauses[] = "u.id_agencia = :agencia_id";
             $params[':agencia_id'] = (int)$filters['agencia_id'];
+        }
+
+        // Filtro por terminal (usuario)
+        if (!empty($filters['terminal_id'])) {
+            $whereClauses[] = "t.id_usuario = :terminal_id";
+            $params[':terminal_id'] = (int)$filters['terminal_id'];
         }
 
         $whereSql = count($whereClauses) > 0 ? 'AND ' . implode(' AND ', $whereClauses) : '';
@@ -781,6 +1036,12 @@ class ReportService
             $params[':fecha_hasta'] = $filtros['fecha_hasta'];
         }
 
+        // Filtro por terminal (usuario de la terminal)
+        if (!empty($filtros['terminal_id'])) {
+            $whereClauses[] = "t.id_usuario = :terminal_id";
+            $params[':terminal_id'] = (int)$filtros['terminal_id'];
+        }
+
         $whereSql = 'WHERE ' . implode(' AND ', $whereClauses);
 
         $query = "
@@ -814,45 +1075,275 @@ class ReportService
     public function getInformeParteVenta(array $filters = [])
     {
         try {
-            // 1. OBTENER VENTAS BOLETOS (de getListaTickets)
-            $ventasData = $this->getListaTickets($filters);
-            $ventasBoletos = (float)($ventasData['total_vendido'] ?? 0);
+            // 1) Reutilización de datos base (NO duplicar SQL)
+            $ventasData = $this->getListaTickets($filters);         // ventas, ganadores, pagados
+            $anuladosData = $this->getTicketsAnulados($filters);    // cancelados
+            $retiradosData = $this->getCaballosRetirados($filters); // retirados pagados / a pagar
 
-            // 2. OBTENER CANCELADOS (de getTicketsAnulados para ROL ADMIN)
-            $anuladosData = $this->getTicketsAnulados($filters);
-            $cancelados = (float)($anuladosData['total_anulado'] ?? 0);
+            // 2) Extraer montos principales de los servicios existentes
+            $ventaBoletos        = (float)($ventasData['total_vendido']   ?? 0); // Total ventas brutas
+            $ventasGanadores     = (float)($ventasData['total_ganadores'] ?? 0); // Premios ganadores
+            $ventasPagados       = (float)($ventasData['total_pagados']   ?? 0); // Premios ya pagados
+            $cancelados          = (float)($anuladosData['total_anulado'] ?? 0); // Total tickets anulados (monto apostado)
+            $retiradosPagados    = (float)($retiradosData['total_devuelto']    ?? 0); // Devoluciones efectuadas
+            $retiradosAPagar     = (float)($retiradosData['total_a_devolver']  ?? 0); // Devoluciones pendientes
 
-            // 3. OBTENER RETIRADOS (de getCaballosRetirados)
-            $retiradosData = $this->getCaballosRetirados($filters);
-            $retirados = (float)($retiradosData['total_devuelto'] ?? 0);
+            // 3) Venta Neta de Boletos (conservando compatibilidad actual)
+            //    Fórmula base existente: vendidos - cancelados - retirados pagados
+            $ventaNetaBoletos = $ventaBoletos - $cancelados - $retiradosPagados;
 
-            // 4. CALCULAR VENTA NETA
-            $ventaNeta = $ventasBoletos - $cancelados - $retirados;
+            // 4) Servicios (estructura placeholder hasta definir origen)
+            $servicios = 0.0; // TODO: definir cuando se confirme el origen
+            $ventaNetaSinServicios = $ventaNetaBoletos - $servicios;
 
-            // 5. RETORNAR ESTRUCTURA CON KPIs
+            // 5) Pagos y compensaciones
+            $pagos = $ventasPagados; // Tickets pagados
+            $pagosEspeciales = 0.0;  // Placeholder (estructura)
+            $pagoNeto = $pagos + $retiradosPagados + $retiradosAPagar + $pagosEspeciales;
+
+            // 6) Resultados intermedios
+            $resultadoNeto  = $ventaNetaSinServicios - $pagoNeto;
+            $boletoAPagar   = max(0.0, $ventasGanadores - $ventasPagados); // Ganadores no pagados
+            $resultadoNeto2 = $resultadoNeto - $boletoAPagar;
+
+            // 7) Cubiertas (solo estructura por ahora)
+            $cubiertasA         = 0.0;
+            $cubiertasDe        = 0.0;
+            $cobrosCubiertasA   = 0.0;
+            $pagosCubiertasDe   = 0.0;
+
+            // 8) Resultados finales
+            $resultadoFinal     = $resultadoNeto2 + $cobrosCubiertasA - $cubiertasA;
+            $pagosAtrasados     = 0.0; // Estructura
+            $pozosVacantes      = 0.0; // Estructura
+            $ventaAContabilizar = $resultadoFinal - $pagosAtrasados - $pozosVacantes;
+
+            // 9) Retorno consolidado (mantener compatibilidad: kpis + data)
             return [
                 'kpis' => [
-                    'ventas_boletos' => $ventasBoletos,
+                    // Bloque base (compatibilidad existente)
+                    'ventas_boletos' => $ventaBoletos,
                     'cancelados' => $cancelados,
-                    'retirados' => $retirados,
-                    'venta_neta_boletos' => $ventaNeta
+                    'retirados' => $retiradosPagados, // compat: mismo significado previo
+                    'venta_neta_boletos' => $ventaNetaBoletos,
+
+                    // Servicios
+                    'servicios' => $servicios,
+                    'venta_neta_boletos_sin_servicios' => $ventaNetaSinServicios,
+
+                    // Pagos y compensaciones
+                    'pagos' => $pagos,
+                    'retirados_pagados' => $retiradosPagados,
+                    'retirados_a_pagar' => $retiradosAPagar,
+                    'pagos_especiales' => $pagosEspeciales,
+                    'pago_neto' => $pagoNeto,
+
+                    // Resultados intermedios
+                    'resultado_neto' => $resultadoNeto,
+                    'boleto_a_pagar' => $boletoAPagar,
+                    'resultado_neto_2' => $resultadoNeto2,
+
+                    // Cubiertas
+                    'cubiertas_a' => $cubiertasA,
+                    'cubiertas_de' => $cubiertasDe,
+                    'cobros_cubiertas_a' => $cobrosCubiertasA,
+                    'pagos_cubiertas_de' => $pagosCubiertasDe,
+
+                    // Finales
+                    'resultado_final' => $resultadoFinal,
+                    'pagos_atrasados' => $pagosAtrasados,
+                    'pozos_vacantes' => $pozosVacantes,
+                    'venta_a_contabilizar' => $ventaAContabilizar,
                 ],
-                'data' => [] // Este reporte solo muestra KPIs, no registros detallados
+                'data' => []
             ];
 
         } catch (\Exception $e) {
             error_log("ERROR getInformeParteVenta: " . $e->getMessage());
-            
-            // Retornar estructura vacía en caso de error
+
+            // Retornar estructura completa con valores por defecto (0.0)
             return [
                 'kpis' => [
-                    'ventas_boletos' => 0,
-                    'cancelados' => 0,
-                    'retirados' => 0,
-                    'venta_neta_boletos' => 0
+                    'ventas_boletos' => 0.0,
+                    'cancelados' => 0.0,
+                    'retirados' => 0.0,
+                    'venta_neta_boletos' => 0.0,
+
+                    'servicios' => 0.0,
+                    'venta_neta_boletos_sin_servicios' => 0.0,
+
+                    'pagos' => 0.0,
+                    'retirados_pagados' => 0.0,
+                    'retirados_a_pagar' => 0.0,
+                    'pagos_especiales' => 0.0,
+                    'pago_neto' => 0.0,
+
+                    'resultado_neto' => 0.0,
+                    'boleto_a_pagar' => 0.0,
+                    'resultado_neto_2' => 0.0,
+
+                    'cubiertas_a' => 0.0,
+                    'cubiertas_de' => 0.0,
+                    'cobros_cubiertas_a' => 0.0,
+                    'pagos_cubiertas_de' => 0.0,
+
+                    'resultado_final' => 0.0,
+                    'pagos_atrasados' => 0.0,
+                    'pozos_vacantes' => 0.0,
+                    'venta_a_contabilizar' => 0.0,
                 ],
                 'data' => []
             ];
         }
+    }
+
+    /**
+     * Informe de Caja (rol ADMIN, módulo Agencia) 
+     * Requiere: agencia_id y terminal_id. Usa filtros fecha_desde/fecha_hasta.
+     * Retorna KPIs y estructura Agencia→Terminal→Conceptos.
+     */
+    public function getInformeCajaFromExisting(array $filters = [])
+    {
+        // Validaciones mínimas
+        $agenciaId = isset($filters['agencia_id']) ? (int)$filters['agencia_id'] : null;
+        $terminalId = isset($filters['terminal_id']) ? (int)$filters['terminal_id'] : null;
+
+        if (empty($agenciaId) || empty($terminalId)) {
+            return [
+                'kpis' => ['total_ingreso' => 0, 'total_egreso' => 0, 'total_saldo' => 0],
+                'data' => []
+            ];
+        }
+
+        // 1) Ventas por terminal (ingreso): reutilizamos detalle de ventas y agregamos en PHP
+        $ventasRows = $this->getVentasTicketsData($filters);
+
+        $ventasMonto = 0.0;
+        $ventasTickets = [];
+        $terminalNombre = null;
+        $agenciaNombre = null;
+
+        foreach ($ventasRows as $row) {
+            $ventasMonto += (float)($row['Monto Apostado'] ?? 0);
+            $ticketNro = (string)($row['Nro Ticket'] ?? '');
+            if ($ticketNro !== '') $ventasTickets[$ticketNro] = true;
+            if ($terminalNombre === null && !empty($row['Usuario'])) $terminalNombre = $row['Usuario'];
+            if ($agenciaNombre === null && !empty($row['Agencia'])) $agenciaNombre = $row['Agencia'];
+        }
+        $ventasCantidad = count($ventasTickets);
+
+        // 2) Cancelados (egreso - parte 1): reutilizar getTicketsAnulados (total_records y total_anulado)
+        $anuladosResp = $this->getTicketsAnulados($filters);
+        $canceladosCantidad = (int)($anuladosResp['total_records'] ?? 0);
+        $canceladosMonto = (float)($anuladosResp['total_anulado'] ?? 0);
+        if ($agenciaNombre === null && !empty($anuladosResp['data'][0]['nombre_agencia'])) {
+            $agenciaNombre = $anuladosResp['data'][0]['nombre_agencia'];
+        }
+        if ($terminalNombre === null && !empty($anuladosResp['data'][0]['nombre_usuario'])) {
+            $terminalNombre = $anuladosResp['data'][0]['nombre_usuario'];
+        }
+
+        // 3) Pagados (egreso - parte 2): desde ventas detalladas, sumar premios cuando Estado='Pagado'
+        $pagadosTickets = [];
+        $pagadosMonto = 0.0;
+        foreach ($ventasRows as $row) {
+            $ticketNro = (string)($row['Nro Ticket'] ?? '');
+            $estado = (string)($row['Estado'] ?? '');
+            $premio = (float)($row['Premio'] ?? 0);
+            if ($estado === 'Pagado') {
+                // Agrupar por ticket para contar cantidad: considerar ticket pagado si premio total > 0
+                if (!isset($pagadosTickets[$ticketNro])) {
+                    $pagadosTickets[$ticketNro] = 0.0;
+                }
+                $pagadosTickets[$ticketNro] += $premio;
+                $pagadosMonto += $premio;
+            }
+        }
+        // Contar solo tickets con premio > 0
+        $pagadosCantidad = 0;
+        foreach ($pagadosTickets as $tn => $pm) {
+            if ($pm > 0) $pagadosCantidad++;
+        }
+
+        // 4) Totales y estructura - nivel TERMINAL
+        $ingreso = $ventasMonto;
+        $egreso = $canceladosMonto + $pagadosMonto;
+        $saldo = $ingreso - $egreso;
+
+        // 4-bis) Totales por AGENCIA (suma de TODAS las terminales de la agencia)
+        // Reutilizamos las mismas consultas sin filtrar por terminal_id
+        $filtersAgencia = $filters;
+        if (isset($filtersAgencia['terminal_id'])) {
+            unset($filtersAgencia['terminal_id']);
+        }
+
+        $ventasRowsAgencia = $this->getVentasTicketsData($filtersAgencia);
+        $ingresoAg = 0.0;
+        foreach ($ventasRowsAgencia as $row) {
+            $ingresoAg += (float)($row['Monto Apostado'] ?? 0);
+        }
+        $anuladosRespAg = $this->getTicketsAnulados($filtersAgencia);
+        $canceladosMontoAg = (float)($anuladosRespAg['total_anulado'] ?? 0);
+        $pagadosMontoAg = 0.0;
+        foreach ($ventasRowsAgencia as $row) {
+            if ((string)($row['Estado'] ?? '') === 'Pagado') {
+                $pagadosMontoAg += (float)($row['Premio'] ?? 0);
+            }
+        }
+        $egresoAg = $canceladosMontoAg + $pagadosMontoAg;
+        $saldoAg = $ingresoAg - $egresoAg;
+
+        $agencia = [
+            'id_agencia' => $agenciaId,
+            'nombre_agencia' => $agenciaNombre ?? '',
+            'terminales' => [
+                [
+                    'id_usuario' => $terminalId,
+                    'nombre_usuario' => $terminalNombre ?? '',
+                    'conceptos' => [
+                        [
+                            'concepto' => 'Venta',
+                            'cantidad' => $ventasCantidad,
+                            'ingreso' => $ingreso,
+                            'egreso' => 0,
+                            'saldo' => null
+                        ],
+                        [
+                            'concepto' => 'Cancelados',
+                            'cantidad' => $canceladosCantidad,
+                            'ingreso' => 0,
+                            'egreso' => $canceladosMonto,
+                            'saldo' => null
+                        ],
+                        [
+                            'concepto' => 'Pagos',
+                            'cantidad' => $pagadosCantidad,
+                            'ingreso' => 0,
+                            'egreso' => $pagadosMonto,
+                            'saldo' => null
+                        ]
+                    ],
+                    'totales_terminal' => [
+                        'ingreso' => $ingreso,
+                        'egreso' => $egreso,
+                        'saldo' => $saldo
+                    ]
+                ]
+            ],
+            'totales_agencia' => [
+                'ingreso' => $ingresoAg,
+                'egreso' => $egresoAg,
+                'saldo' => $saldoAg
+            ]
+        ];
+
+        return [
+            'kpis' => [
+                'total_ingreso' => $ingreso,
+                'total_egreso' => $egreso,
+                'total_saldo' => $saldo
+            ],
+            'data' => [$agencia]
+        ];
     }
 }
