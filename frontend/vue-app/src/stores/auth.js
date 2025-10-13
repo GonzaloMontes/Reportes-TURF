@@ -16,20 +16,17 @@ export const useAuthStore = defineStore('auth', () => {
   /**
    * Verifica si existe una sesión activa al cargar la aplicación
    */
+  // Verifica estado de sesión en el servidor (producción usa /api/auth/status)
   async function verificarAutenticacion() {
     try {
       cargando.value = true
       error.value = null
-      
-      const respuesta = await apiClient.get('/auth/verify')
-      
-      if (respuesta.authenticated === true) {
+      const respuesta = await apiClient.get('auth/status')
+      if (respuesta && respuesta.user) {
         usuario.value = respuesta.user
-        tokenCsrf.value = respuesta.csrf_token
+        tokenCsrf.value = respuesta.csrf_token || null
         estaAutenticado.value = true
-      } else {
-        limpiarSesion()
-      }
+      } else limpiarSesion()
     } catch (err) {
       console.error('Error verificando autenticación:', err)
       limpiarSesion()
@@ -41,22 +38,25 @@ export const useAuthStore = defineStore('auth', () => {
   /**
    * Inicia sesión con credenciales de usuario
    */
+  // Inicia sesión validando respuesta del backend
   async function iniciarSesion(credenciales) {
     try {
       cargando.value = true
       error.value = null
 
-      const respuesta = await apiClient.post('/auth/login', {
+      const respuesta = await apiClient.post('auth/login', {
         username: credenciales.usuario,
         password: credenciales.contrasena,
         remember: credenciales.recordar || false
       })
 
-      usuario.value = respuesta.user
-      tokenCsrf.value = respuesta.csrf_token
-      estaAutenticado.value = true
-
-      return { exito: true }
+      if (respuesta && respuesta.success === true && respuesta.user) {
+        usuario.value = respuesta.user
+        tokenCsrf.value = respuesta.csrf_token || null
+        estaAutenticado.value = true
+        return { exito: true }
+      }
+      throw new Error(respuesta?.error || 'Credenciales inválidas')
     } catch (err) {
       error.value = err.message || 'Error al iniciar sesión'
       return { exito: false, mensaje: error.value }
@@ -68,9 +68,10 @@ export const useAuthStore = defineStore('auth', () => {
   /**
    * Cierra la sesión del usuario
    */
+  // Cerrar sesión en backend y limpiar estado local
   async function cerrarSesion() {
     try {
-      await apiClient.post('/auth/logout')
+      await apiClient.post('auth/logout')
     } catch (err) {
       console.error('Error cerrando sesión:', err)
     } finally {

@@ -61,7 +61,8 @@ class Auth
             
             // Verificar si existe el usuario y la contraseña coincide (usando MD5)
             $contrasenaHasheada = md5($contrasena);
-            if (!$usuario || $usuario['contrasena'] !== $contrasenaHasheada) {
+            $hashDb = isset($usuario['contrasena']) ? trim((string)$usuario['contrasena']) : '';
+            if (!$usuario || strcasecmp($hashDb, $contrasenaHasheada) !== 0) {
                 return [
                     'exito' => false,
                     'mensaje' => 'Credenciales inválidas'

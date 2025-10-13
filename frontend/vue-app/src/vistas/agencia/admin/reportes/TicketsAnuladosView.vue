@@ -12,32 +12,32 @@
   >
     <!-- Nro ticket -->
     <template #cell-numero_ticket="{ fila }">
-      <span class="text-black">{{ obtener(fila, ['numero_ticket','nro_ticket','ticket','id_ticket']) }}</span>
+      <span class="text-gray-900 font-semibold">{{ obtener(fila, ['numero_ticket','nro_ticket','ticket','id_ticket']) }}</span>
     </template>
 
     <!-- Fecha -->
     <template #cell-fecha="{ fila }">
-      <span class="text-black">{{ formatearFecha(obtener(fila, ['fecha','fecha_ticket','fecha_creacion'])) }}</span>
+      <span class="text-gray-900 font-semibold">{{ formatearFecha(obtener(fila, ['fecha','fecha_ticket','fecha_creacion'])) }}</span>
     </template>
 
     <!-- Hora -->
     <template #cell-hora="{ fila }">
-      <span class="text-black">{{ obtener(fila, ['hora','hora_ticket','hora_creacion','time']) }}</span>
+      <span class="text-gray-900 font-semibold">{{ obtener(fila, ['hora','hora_ticket','hora_creacion','time']) }}</span>
     </template>
 
     <!-- Nombre Usuario -->
     <template #cell-nombre_usuario="{ fila }">
-      <span class="text-black">{{ obtener(fila, ['nombre_usuario','usuario','nombre','terminal','nombre_terminal']) }}</span>
+      <span class="text-gray-900 font-semibold">{{ obtener(fila, ['nombre_usuario','usuario','nombre','terminal','nombre_terminal']) }}</span>
     </template>
 
     <!-- Nombre Agencia -->
     <template #cell-nombre_agencia="{ fila }">
-      <span class="text-black">{{ obtener(fila, ['nombre_agencia','agencia','agencia_nombre']) }}</span>
+      <span class="text-gray-900 font-semibold">{{ obtener(fila, ['nombre_agencia','agencia','agencia_nombre']) }}</span>
     </template>
 
     <!-- Total apostado (moneda) -->
     <template #cell-total_apostado="{ fila }">
-      <span class="text-black">{{ formatearMoneda(obtener(fila, ['total_apostado','monto','importe','total','apostado'])) }}</span>
+      <span class="text-gray-900 font-semibold">{{ formatearMoneda(obtener(fila, ['total_apostado','monto','importe','total','apostado'])) }}</span>
     </template>
   </TablaBase>
 </template>

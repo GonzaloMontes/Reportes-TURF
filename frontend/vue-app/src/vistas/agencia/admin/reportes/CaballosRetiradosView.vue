@@ -28,7 +28,7 @@
   >
     <!-- Slots para formateo personalizado -->
     <template #cell-fecha="{ fila }">
-      <span class="text-gray-900">{{ formatearFecha(obtener(fila, ['fecha','fecha_ticket'])) }}</span>
+      <span class="text-gray-900 font-semibold">{{ formatearFecha(obtener(fila, ['fecha','fecha_ticket'])) }}</span>
     </template>
     <template #cell-nro_caballo="{ fila }">
       <span class="text-gray-900 font-semibold">{{ obtener(fila, ['nro_caballo','numero_caballo','id_caballo','caballo']) }}</span>
@@ -37,10 +37,10 @@
       <span class="text-gray-900 font-semibold">{{ formatearMoneda(obtener(fila, ['total_apostado','monto_apostado','total','monto'])) }}</span>
     </template>
     <template #cell-monto_a_devolver="{ fila }">
-      <span class="text-gray-900 font-semibold">{{ formatearNumero(obtener(fila, ['monto_a_devolver','a_devolver','devolver'])) }}</span>
+      <span class="text-gray-900 font-semibold">{{ formatearMoneda(obtener(fila, ['monto_a_devolver','a_devolver','devolver'])) }}</span>
     </template>
     <template #cell-monto_devuelto="{ fila }">
-      <span class="text-gray-900 font-semibold">{{ formatearNumero(obtener(fila, ['monto_devuelto','devuelto','total_devuelto'])) }}</span>
+      <span class="text-gray-900 font-semibold">{{ formatearMoneda(obtener(fila, ['monto_devuelto','devuelto','total_devuelto'])) }}</span>
     </template>
     <template #cell-estado_devolucion="{ fila }">
       <EstadoBadge :estado="obtener(fila, ['estado_devolucion','estado','status']) || '-'" />

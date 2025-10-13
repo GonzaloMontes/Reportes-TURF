@@ -15,7 +15,7 @@
       <template v-for="(fila, i) in datos" :key="obtenerIdCarrera(fila)">
         <tr class="hover:bg-gray-50" :class="i % 2 === 0 ? 'bg-white' : 'bg-gray-50'">
           <!-- Número de carrera + botón detalle -->
-          <td class="px-6 py-3 text-sm text-left text-gray-900">
+          <td class="px-6 py-3 text-sm text-left text-gray-900 font-semibold">
             <span>Carrera {{ fila[kNumero] }}</span>
             <button class="ml-2 text-blue-600 hover:text-blue-800 text-sm font-medium underline"
                     @click="toggleResultados(obtenerIdCarrera(fila))">
@@ -23,13 +23,13 @@
             </button>
           </td>
           <!-- Fecha -->
-          <td class="px-6 py-3 text-sm text-center text-gray-900">{{ formatearFecha(fila[kFecha]) }}</td>
+          <td class="px-6 py-3 text-sm text-center text-gray-900 font-semibold">{{ formatearFecha(fila[kFecha]) }}</td>
           <!-- Hipódromo -->
-          <td class="px-6 py-3 text-sm text-center text-gray-900">{{ fila[kHipodromo] }}</td>
+          <td class="px-6 py-3 text-sm text-center text-gray-900 font-semibold">{{ fila[kHipodromo] }}</td>
           <!-- Favorito -->
-          <td class="px-6 py-3 text-sm text-center text-gray-900">{{ fila[kFavorito] || '—' }}</td>
+          <td class="px-6 py-3 text-sm text-center text-gray-900 font-semibold">{{ fila[kFavorito] || '—' }}</td>
           <!-- Borrados -->
-          <td class="px-6 py-3 text-sm text-center text-gray-900">{{ (Number(fila[kBorrados] || 0) === 0) ? 'Corren todos' : Number(fila[kBorrados] || 0) }}</td>
+          <td class="px-6 py-3 text-sm text-center text-gray-900 font-semibold">{{ (Number(fila[kBorrados] || 0) === 0) ? 'Corren todos' : Number(fila[kBorrados] || 0) }}</td>
         </tr>
 
         <!-- Detalle de resultados -->
@@ -53,17 +53,26 @@
                   <tbody class="bg-white">
                     <tr v-for="r in resultados" :key="(r.posicion != null ? 'pos-' + r.posicion : 'ap-' + (r.apuesta || '-'))" class="border-b border-gray-200 odd:bg-gray-50 even:bg-white">
                       <!-- Posición (soporta extendido y fallback) -->
-                      <td class="px-4 py-3 text-center text-gray-900">{{ r.posicion ?? r.posicion_llegada }}</td>
+                      <td class="px-4 py-3 text-center text-gray-900 font-semibold">{{ r.posicion ?? r.posicion_llegada }}</td>
                       <!-- Caballo: mostrar NÚMERO, no nombre -->
-                      <td class="px-4 py-3 text-center text-gray-900">{{ r.nro_caballo ?? r.id_caballo }}</td>
+                      <td class="px-4 py-3 text-center text-gray-900 font-semibold">{{ r.nro_caballo ?? r.id_caballo }}</td>
                       <!-- Apuesta (extendido) o '-' en fallback -->
-                      <td class="px-4 py-3 text-center text-gray-900">{{ r.apuesta ?? '-' }}</td>
+                      <td class="px-4 py-3 text-center text-gray-900 font-semibold">{{ r.apuesta ?? '-' }}</td>
                       <!-- Vales (extendido) o 0 en fallback) -->
-                      <td class="px-4 py-3 text-center text-gray-900">{{ Number(r.vales ?? 0) }}</td>
+                      <td class="px-4 py-3 text-center text-gray-900 font-semibold">{{ Number(r.vales ?? 0) }}</td>
                       <!-- Div.Puro / Div.Inc / Total (extendido) o 0 en fallback -->
-                      <td class="px-4 py-3 text-center text-gray-900">{{ formatearMoneda(r.div_orig ?? 0) }}</td>
-                      <td class="px-4 py-3 text-center text-gray-900">{{ formatearMoneda(r.div_inc ?? (r.div_orig ?? 0)) }}</td>
-                      <td class="px-4 py-3 text-center text-gray-900">{{ formatearMoneda(r.total ?? 0) }}</td>
+                      <td class="px-4 py-3 text-center text-gray-900 font-semibold">{{ formatearMoneda(r.div_orig ?? 0) }}</td>
+                      <td class="px-4 py-3 text-center text-gray-900 font-semibold">{{ formatearMoneda(r.div_inc ?? (r.div_orig ?? 0)) }}</td>
+                      <td class="px-4 py-3 text-center text-gray-900 font-semibold">{{ formatearMoneda(r.total ?? 0) }}</td>
+                    </tr>
+                    <tr class="bg-indigo-50">
+                      <td class="px-4 py-3 text-center text-gray-900 font-semibold">TOTALES</td>
+                      <td class="px-4 py-3"></td>
+                      <td class="px-4 py-3"></td>
+                      <td class="px-4 py-3"></td>
+                      <td class="px-4 py-3"></td>
+                      <td class="px-4 py-3"></td>
+                      <td class="px-4 py-3 text-center text-gray-900 font-semibold">{{ formatearMoneda(totalResultados) }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -112,6 +121,15 @@ const columnas = computed(() => [
 const carreraVisible = ref(null)
 const resultados = ref([])
 const cargando = ref(false)
+
+// Total de la columna "Total" en el detalle desplegable
+const totalResultados = computed(() => {
+  return (Array.isArray(resultados.value) ? resultados.value : []).reduce((acc, r) => {
+    const v = r?.total ?? 0
+    const n = typeof v === 'number' ? v : parseFloat(String(v).replace(/\./g,'').replace(',', '.'))
+    return acc + (Number.isFinite(n) ? n : 0)
+  }, 0)
+})
 
 function formatearFecha(v) { return fmtFecha(v) }
 function formatearMoneda(v) { return fmtMoneda(v) }

@@ -5,12 +5,12 @@ import axios from 'axios'
  * Mantiene la misma estructura de endpoints que el JavaScript original
  */
 // Log de la URL de API (útil para verificar dev/prod)
-// En dev debe mostrar: https://reportes.turfsoft.net/api/
 // En prod (build) debe mostrar: /api/
-console.log('API URL:', import.meta.env.VITE_API_URL)
+const BASE_URL = (import.meta.env.VITE_API_URL || '/api/').replace(/\/+$/, '/')
+console.log('API URL:', BASE_URL)
 
 export const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: BASE_URL,
   timeout: 10000,
   withCredentials: true,
   headers: {
@@ -58,10 +58,9 @@ apiClient.interceptors.response.use(
       }
     } catch (_) {}
 
-    if (error.response?.status === 401) {
-      // Sesión expirada - redirigir a login
-      window.location.reload()
-    }
+    // 401: no recargar la página para evitar loops; dejar que el caller limpie sesión
+    // y permanezca en el formulario de login
+    // if (error.response?.status === 401) { }
 
     const mensaje = error.response?.data?.error || error.message || 'Error de conexión'
     throw new Error(mensaje)

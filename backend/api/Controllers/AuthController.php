@@ -17,6 +17,28 @@ class AuthController
     }
 
     /**
+     * GET /api/auth/verify
+     * Verifica si existe una sesión activa (compatibilidad con frontend)
+     */
+    public function verify()
+    {
+        if ($this->auth->isAuthenticated()) {
+            echo json_encode([
+                'authenticated' => true,
+                'user' => [
+                    'id' => $_SESSION['user_id'] ?? null,
+                    'username' => $_SESSION['username'] ?? null,
+                    'role' => $_SESSION['role'] ?? null,
+                    'agencia_id' => $_SESSION['agencia_id'] ?? null
+                ],
+                'csrf_token' => $this->auth->getCsrfToken()
+            ]);
+        } else {
+            echo json_encode(['authenticated' => false]);
+        }
+    }
+
+    /**
      * POST /api/auth/login
      * Autenticación de usuario
      */
